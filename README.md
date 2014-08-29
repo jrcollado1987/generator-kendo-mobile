@@ -6,6 +6,18 @@ To install yeaoman just run the followin npm script:
 npm install -g yo
 ```
 
+## Usage
+
+Install `kendo-mobile`:
+```
+npm install -g kendo-mobile
+```
+
+Make a new directory, and `cd` into it:
+```
+mkdir my-new-project && cd $_
+```
+
 ## Generators
 
 Available generators:
