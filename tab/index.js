@@ -26,16 +26,38 @@ var KendoMobileTabGenerator = yeoman.generators.Base.extend({
             },
             {
                 type: 'input',
-                name: 'tabs',
-                message: 'List the main navigation tabs.',
-                default: 'Home,Settings,Contacts'
+                name: 'tabsCount',
+                message: 'How many tabs you want?',
+                default: 3
             }
         ];
         this.prompt(prompts, function (props) {
-            this.tabs = props.tabs.split(',');
+            var that = this;
+            that.tabsCount = props.tabsCount;
+
+            that.tabs = [];
+
+            var tabPrompts = [];
+            for (var i = 0; i < props.tabsCount; i++) {
+                var tab = 'tab' + (i + 1);
+                tabPrompts.push({
+                    type: 'input',
+                    name: tab,
+                    message: 'What is the name of' + tab + "?",
+                    default: tab
+                });
+            }
+
+
+            that.prompt(tabPrompts, function (props) {
+                _.forEach(props, function (prop) {
+                    that.tabs.push(prop);
+                });
+                done();
+            }.bind(this));
+
             this.header = props.header;
 
-            done();
         }.bind(this));
     },
 
