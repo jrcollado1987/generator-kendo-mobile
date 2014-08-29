@@ -13,10 +13,8 @@ Available generators:
 * [kendo-mobile](#app) (aka [kendo-mobile:app](#app))
 * [kendo-mobile:tab](#tab)
 
-To install generator-kendo-mobile from npm, run:
-
 ### App
-Sets up a new AngularJS app, generating all the boilerplate you need to get started. The app generator also optionally installs Bootstrap and additional AngularJS modules, such as angular-resource (installed by default).
+Sets up a new Kendo mobile hybrid app, generating all the boilerplate you need to get started. The app generator  installs cordova, kendo and additional styles and scripts.
 
 Example:
 ```bash
