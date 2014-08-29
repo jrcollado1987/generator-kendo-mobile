@@ -1,0 +1,2 @@
+generator-kendo-mobile
+======================
