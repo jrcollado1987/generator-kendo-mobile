@@ -1,3 +1,6 @@
+## Yeoman
+
+To install yeaoman just run the followin npm script:
 
 ```bash
 npm install -g yo
