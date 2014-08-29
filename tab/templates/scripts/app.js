@@ -7,25 +7,13 @@
     // create an object to store the models for each view
     window.APP = {
         models: {
-            home: {
-                title: 'Home'
+            <% for(var i=0; i < tabs.length ; i++) {
+            var tab = tabs[i];
+            %>
+            <%= tab %>: {
+                title: '<%= tab %>'
             },
-            settings: {
-                title: 'Settings'
-            },
-            contacts: {
-                title: 'Contacts',
-                ds: new kendo.data.DataSource({
-                    data: [
-                        { id: 1, name: 'Bob' },
-                        { id: 2, name: 'Mary' },
-                        { id: 3, name: 'John' }
-                    ]
-                }),
-                alert: function (e) {
-                    alert(e.data.name);
-                }
-            }
+            <% } %>
         }
     };
 

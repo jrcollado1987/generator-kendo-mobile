@@ -3,6 +3,7 @@ var util = require('util');
 var path = require('path');
 var yeoman = require('yeoman-generator');
 var yosay = require('yosay');
+var _ = require('lodash');
 
 var KendoMobileTabGenerator = yeoman.generators.Base.extend({
     initializing: function () {
@@ -27,11 +28,11 @@ var KendoMobileTabGenerator = yeoman.generators.Base.extend({
                 type: 'input',
                 name: 'tabs',
                 message: 'List the main navigation tabs.',
-                default: ['Home', 'Settings', 'Contacts']
+                default: 'Home,Settings,Contacts'
             }
         ];
         this.prompt(prompts, function (props) {
-            this.tabs = props.tabs;
+            this.tabs = props.tabs.split(',');
             this.header = props.header;
 
             done();
@@ -40,8 +41,16 @@ var KendoMobileTabGenerator = yeoman.generators.Base.extend({
 
     writing: {
         app: function () {
-            this.directory('scripts', 'app/scripts');
-            this.directory('views', 'app/views');
+            var that = this;
+
+            that.template('scripts/app.js', 'app/scripts/app.js');
+
+            _.each(that.tabs, function (tab) {
+                var name = 'app/views/' + tab + '.html';
+                that.template('views/tab-view.html', name, {
+                    name: tab
+                });
+            });
         },
 
         projectfiles: function () {
