@@ -43,9 +43,7 @@ var KendoMobileGenerator = yeoman.generators.Base.extend({
             this.src.copy('jshintrc', '.jshintrc');
 
             this.directory('static/kendo', 'app/kendo');
-            this.directory('scripts', 'app/scripts');
             this.directory('styles', 'app/styles');
-            this.directory('views', 'app/views');
             this.directory('static/cordova', 'app');
 
             this.template('index.html', 'app/index.html');

@@ -4,51 +4,53 @@ var path = require('path');
 var yeoman = require('yeoman-generator');
 var yosay = require('yosay');
 
-var KendoMobileGenerator = yeoman.generators.Base.extend({
-  initializing: function () {
-    this.pkg = require('../package.json');
-  },
-
-  prompting: function () {
-    var done = this.async();
-
-    // Have Yeoman greet the user.
-    this.log(yosay(
-      'Welcome to the legendary KendoMobile generator!'
-    ));
-
-    var prompts = [{
-      type: 'confirm',
-      name: 'someOption',
-      message: 'Would you like to enable this option?',
-      default: true
-    }];
-
-    this.prompt(prompts, function (props) {
-      this.someOption = props.someOption;
-
-      done();
-    }.bind(this));
-  },
-
-  writing: {
-    app: function () {
-      this.dest.mkdir('app');
-      this.dest.mkdir('app/templates');
-
-      this.src.copy('_package.json', 'package.json');
-      this.src.copy('_bower.json', 'bower.json');
+var KendoMobileTabGenerator = yeoman.generators.Base.extend({
+    initializing: function () {
     },
 
-    projectfiles: function () {
-      this.src.copy('editorconfig', '.editorconfig');
-      this.src.copy('jshintrc', '.jshintrc');
-    }
-  },
+    prompting: function () {
+        var done = this.async();
 
-  end: function () {
-    this.installDependencies();
-  }
+        // Have Yeoman greet the user.
+        this.log(yosay(
+            'Welcome to the legendary KendoMobile generator!'
+        ));
+
+        var prompts = [
+            {
+                type: 'confirm',
+                name: 'header',
+                message: 'Would you like a navigation header?',
+                default: true
+            },
+            {
+                type: 'input',
+                name: 'tabs',
+                message: 'List the main navigation tabs.',
+                default: ['Home', 'Settings', 'Contacts']
+            }
+        ];
+        this.prompt(prompts, function (props) {
+            this.tabs = props.tabs;
+            this.header = props.header;
+
+            done();
+        }.bind(this));
+    },
+
+    writing: {
+        app: function () {
+            this.directory('scripts', 'app/scripts');
+            this.directory('views', 'app/views');
+        },
+
+        projectfiles: function () {
+            this.template('index.html', 'app/index.html');
+        }
+    },
+
+    end: function () {
+    }
 });
 
-module.exports = KendoMobileGenerator;
+module.exports = KendoMobileTabGenerator;
