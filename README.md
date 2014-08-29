@@ -18,6 +18,8 @@ Make a new directory, and `cd` into it:
 mkdir my-new-project && cd $_
 ```
 
+Run `grunt serve` for preview.
+
 ## Generators
 
 Available generators:
