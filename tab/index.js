@@ -12,11 +12,6 @@ var KendoMobileTabGenerator = yeoman.generators.Base.extend({
     prompting: function () {
         var done = this.async();
 
-        // Have Yeoman greet the user.
-        this.log(yosay(
-            'Welcome to the legendary KendoMobile generator!'
-        ));
-
         var prompts = [
             {
                 type: 'confirm',
