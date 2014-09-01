@@ -62,11 +62,18 @@ var KendoMobileTabGenerator = yeoman.generators.Base.extend({
 
             that.template('scripts/app.js', 'app/scripts/app.js');
 
+            that.scripts = [];
             _.each(that.tabs, function (tab) {
-                var name = 'app/views/' + tab + '.html';
-                that.template('views/tab-view.html', name, {
+                var view = 'app/views/' + tab + '.html';
+                var model = 'app/scripts/' + tab + '.js';
+                that.template('views/tab-view.html', view, {
                     name: tab
                 });
+
+                that.template('scripts/model.js', model, {
+                    name: tab
+                });
+                that.scripts.push('scripts/' + tab + '.js');
             });
         },
 
@@ -78,6 +85,8 @@ var KendoMobileTabGenerator = yeoman.generators.Base.extend({
                 var h = this.engine(header, this);
                 index = this.domUpdate(index, "#header", h, 'r');
             }
+
+            index = this.appendScripts(index, '', this.scripts);
 
             var tabs = this.src.read('tab-strip.html');
             var footer = this.engine(tabs, this);

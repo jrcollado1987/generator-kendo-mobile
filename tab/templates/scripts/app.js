@@ -2,19 +2,8 @@
 
     // store a reference to the application object that will be created
     // later on so that we can use it if need be
-    var app;
-
-    // create an object to store the models for each view
-    window.APP = {
-        models: {
-            <% for(var i=0; i < tabs.length ; i++) {
-            var tab = tabs[i];
-            %>
-            <%= tab %>: {
-                title: '<%= tab %>'
-            },
-            <% } %>
-        }
+    var app = {
+        models: {}
     };
 
 //    This is for testing on device.
@@ -25,7 +14,7 @@
 //      // Cordova will wait 5 very long seconds to do it for you.
 //      navigator.splashscreen.hide();
 
-    app = new kendo.mobile.Application(document.body, {
+    app.mobileApp = new kendo.mobile.Application(document.body, {
 
         // you can change the default transition (slide, zoom or fade)
         transition: 'slide',
@@ -40,5 +29,5 @@
 
     //}, false);
 
-
+    window.app = app;
 }());
