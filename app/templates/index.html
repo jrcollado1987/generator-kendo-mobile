@@ -11,10 +11,25 @@
 
     <script src="/kendo/js/jquery.min.js"></script>
     <script src="/kendo/js/kendo.mobile.min.js"></script>
+    <% if (everlive) { %>
+    <script src="/lib/everlive.all.min.js"></script>
+    <% } %>
+    <script src="scripts/app.js"></script>
 </head>
 <body>
 
 <div data-role="layout" data-id="main">
+    <div data-role="header">
+        <div id="header">
+        </div>
+    </div>
+
+    <div id="main-content">
+    </div>
+
+    <div data-role="footer">
+        <div id="footer"></div>
+    </div>
 
 </div>
 

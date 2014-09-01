@@ -76,19 +76,7 @@ var KendoMobileTabGenerator = yeoman.generators.Base.extend({
         },
 
         projectfiles: function () {
-            var index = this.engine(this.dest.read('app/index.html'), this);
-
-            if (this.header) {
-                var header = this.src.read('tab-header.html');
-                var h = this.engine(header, this);
-                index = this.domUpdate(index, "#header", h, 'r');
-            }
-
-            var tabs = this.src.read('tab-strip.html');
-            var footer = this.engine(tabs, this);
-
-            index = this.domUpdate(index, "#footer", footer, 'r');
-            this.writeFileFromString(index, 'app/index.html');
+            this.template('index.html', 'app/index.html');
         }
     },
 

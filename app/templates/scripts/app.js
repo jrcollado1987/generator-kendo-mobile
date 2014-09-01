@@ -4,19 +4,6 @@
     // later on so that we can use it if need be
     var app;
 
-    // create an object to store the models for each view
-    window.APP = {
-        models: {
-            <% for(var i=0; i < tabs.length ; i++) {
-            var tab = tabs[i];
-            %>
-            <%= tab %>: {
-                title: '<%= tab %>'
-            },
-            <% } %>
-        }
-    };
-
 //    This is for testing on device.
 //    // this function is called by Cordova when the application is loaded by the device
 //    document.addEventListener('deviceready', function () {
@@ -35,7 +22,7 @@
         skin: 'flat',
 
         // the application needs to know which view to load first
-        initial: 'views/<%= tabs[0] %>.html'
+        initial: 'views/home.html'
     });
 
     //}, false);

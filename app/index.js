@@ -21,10 +21,16 @@ var KendoMobileGenerator = yeoman.generators.Base.extend({
         ));
 
         var prompts = [
-
+            {
+                type: 'confirm',
+                name: 'everlive',
+                message: 'Do you want to use everlive backend service?',
+                default: true
+            }
         ];
 
         this.prompt(prompts, function (props) {
+            this.everlive = props.everlive;
 
             done();
         }.bind(this));
@@ -36,15 +42,20 @@ var KendoMobileGenerator = yeoman.generators.Base.extend({
 
             this.src.copy('_package.json', 'package.json');
             this.src.copy('_bower.json', 'bower.json');
+
+            if(this.everlive) {
+                this.src.copy('../static/everlive.all.min.js', 'app/lib/everlive.all.min.js');
+            }
+            this.template('scripts/app.js', 'app/scripts/app.js');
         },
 
         projectfiles: function () {
             this.src.copy('editorconfig', '.editorconfig');
             this.src.copy('jshintrc', '.jshintrc');
 
-            this.directory('static/kendo', 'app/kendo');
+            this.directory('../static/kendo', 'app/kendo');
             this.directory('styles', 'app/styles');
-            this.directory('static/cordova', 'app');
+            this.directory('../static/cordova', 'app');
 
             this.template('index.html', 'app/index.html');
 

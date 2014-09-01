@@ -1,7 +1,7 @@
-<div data-role="footer">
-    <div data-role="tabstrip">
-        <a href="views/home.html" data-icon="home">Home</a>
-        <a href="views/settings.html" data-icon="settings">Settings</a>
-        <a href="views/contacts.html" data-icon="contacts">Contacts</a>
-    </div>
+<div data-role="tabstrip">
+    <% for(var i=0; i < tabs.length ; i++) {
+    var tab = tabs[i];
+    %>
+    <a href="views/<%= tab %>.html" data-icon="<%= tab %>"><%= tab %></a>
+    <% } %>
 </div>
