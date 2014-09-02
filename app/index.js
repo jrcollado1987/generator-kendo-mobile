@@ -38,7 +38,7 @@ var KendoMobileGenerator = yeoman.generators.Base.extend({
                 type: 'list',
                 name: 'theme',
                 message: 'Which theme you prefer?',
-                choices: ['flat'],
+                choices: ['default', 'flat', 'bootstrap'],
                 default: 'flat'
             },
             {

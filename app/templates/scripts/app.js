@@ -10,8 +10,10 @@
     var bootstrap = function () {
         app.mobileApp = new kendo.mobile.Application(document.body, {
 
+        <% if(navigation != 'drawer') { %>
             // you can change the default transition (slide, zoom or fade)
             transition: '<%= transition %>',
+         <% } %>
 
             // comment out the following line to get a UI which matches the look
             // and feel of the operating system
