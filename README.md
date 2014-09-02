@@ -8,7 +8,7 @@ npm install -g yo
 
 ## Usage
 
-Install `kendo-mobile`:
+Install `kendo-mobile` (not there yet):
 ```
 npm install -g kendo-mobile
 ```
@@ -17,8 +17,6 @@ Or clone the repo and link it locally:
 ```
 npm link
 ```
-
-Run `grunt serve` for preview.
 
 ## Generators
 
@@ -30,6 +28,7 @@ Available generators:
 
 ### App
 Sets up a new Kendo mobile hybrid app, generating all the boilerplate you need to get started. The app generator  installs cordova, kendo and additional styles and scripts.
+Available options - navigation, theme, transition, everlive integration.
 
 Example:
 ```bash
@@ -45,12 +44,16 @@ yo kendo-mobile:view
 ```
 
 ### List
-Generates list and inserts in the selected view.
+Generates list and inserts in the selected view. The list data is hard-coded with 3 items for now.
 
 Example:
 ```bash
 yo kendo-mobile:list
 ```
+
+### Run 
+
+Run `grunt serve` in the app root folder for preview in the browser.
 
 ## License
 
