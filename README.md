@@ -28,7 +28,12 @@ Available generators:
 
 ### App
 Sets up a new Kendo mobile hybrid app, generating all the boilerplate you need to get started. The app generator  installs cordova, kendo and additional styles and scripts.
-Available options - navigation, theme, transition, everlive integration.
+
+#### Available options
+* Navigation - drawer, tabstrip and custom
+* Themes - default, falt and bootstrap
+* Transitions - slide, zoom and fade
+* Everlive integration - only add the everlive scripts so far.
 
 Example:
 ```bash
