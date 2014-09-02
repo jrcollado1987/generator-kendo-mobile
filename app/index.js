@@ -63,6 +63,8 @@ var KendoMobileGenerator = yeoman.generators.Base.extend({
             this.theme = props.theme;
             this.transition = props.transition;
 
+            this.config.set('navigation', this.navigation);
+
             done();
         }.bind(this));
     },

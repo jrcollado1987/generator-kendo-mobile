@@ -39,7 +39,13 @@ var KendoMobileTabGenerator = yeoman.generators.Base.extend({
             index = this.appendScripts(index, '', this.scripts);
 
             var linkTemplate = this.src.read('link.html');
+
             var link = this.engine(linkTemplate, this);
+
+            if (this.config.get('navigation') == 'drawer') {
+                link = '<li>' + link + '</li>';
+            }
+
             index = this.domUpdate(index, "#navigation-container", link, 'a');
 
             this.writeFileFromString(index, 'app/index.html');
