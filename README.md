@@ -22,17 +22,17 @@ npm link
 
 Available generators:
 
-* [kendo-mobile](#app) (aka [kendo-mobile:app](#app))
-* [kendo-mobile:view](#view)
-* [kendo-mobile:list](#list)
+* [kendo-mobile](#app) (aka [kendo-mobile:app](#app));
+* [kendo-mobile:view](#view);
+* [kendo-mobile:list](#list).
 
 ### App
 Sets up a new Kendo mobile hybrid app, generating all the boilerplate you need to get started. The app generator  installs cordova, kendo and additional styles and scripts.
 
 #### Available options
-* Navigation - drawer, tabstrip and custom
-* Themes - default, falt and bootstrap
-* Transitions - slide, zoom and fade
+* Navigation - drawer, tabstrip and custom;
+* Themes - default, falt and bootstrap;
+* Transitions - slide, zoom and fade;
 * Everlive integration - only add the everlive scripts so far.
 
 Example:
