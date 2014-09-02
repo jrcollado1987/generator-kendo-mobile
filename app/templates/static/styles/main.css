@@ -26,7 +26,7 @@ body, html {
 
 /* IMAGE STYLES*/
 .img {
-    background-image: url(../styles/images/appbuilder.png);
+    background-image: url(images/appbuilder.png);
     background-repeat: no-repeat;
     text-align: center;
     width: 320px;
@@ -35,7 +35,7 @@ body, html {
 }
 
 .logo {
-    background-image: url(../styles/images/logo.png);
+    background-image: url(images/logo.png);
     background-repeat: no-repeat;
     width: 319px;
     height: 60px;
@@ -106,13 +106,13 @@ body, html {
     color: #fff;
     border: none;
     background: none;
-    background-image: url(../styles/images/search.png);
+    background-image: url(images/search.png);
     background-repeat: no-repeat;
     background-position: center center;
 }
 
 #map-search:active {
-    background-image: url(../styles/images/search_active.png);
+    background-image: url(images/search_active.png);
     background-repeat: no-repeat;
 }
 
@@ -123,13 +123,13 @@ body, html {
     color: #fff;
     border: none;
     background: none;
-    background-image: url(../styles/images/location.png);
+    background-image: url(images/location.png);
     background-repeat: no-repeat;
     background-position: center center;
 }
 
 #map-navigate-home:active {
-    background-image: url(../styles/images/location_active.png);
+    background-image: url(images/location_active.png);
     background-repeat: no-repeat;
 }
 
@@ -176,7 +176,7 @@ body, html {
 .weather-icon {
     width: 64px;
     height: 64px;
-    background-image: url(../styles/images/sprite-weather.png);
+    background-image: url(images/sprite-weather.png);
     background-repeat: no-repeat;
     float: right;
     position: relative;
@@ -315,43 +315,43 @@ body, html {
 /* RETINA DISPLAY STYLES*/
 @media only screen and (-webkit-min-device-pixel-ratio: 2),(min-resolution: 192dpi) {
     .img {
-        background-image: url(../styles/images/appbuilder2x.png);
+        background-image: url(images/appbuilder2x.png);
         background-repeat: no-repeat;
         background-size: 100%;
     }
 
     .logo {
-        background-image: url(../styles/images/logo2x.png);
+        background-image: url(images/logo2x.png);
         background-repeat: no-repeat;
         background-size: 100%;
     }
 
     #map-search {
-        background-image: url(../styles/images/search2x.png);
+        background-image: url(images/search2x.png);
         background-repeat: no-repeat;
         background-size: 100%;
     }
 
     #map-search:active {
-        background-image: url(../styles/images/search_active2x.png);
+        background-image: url(images/search_active2x.png);
         background-repeat: no-repeat;
         background-size: 100%;
     }
 
     #map-navigate-home {
-        background-image: url(../styles/images/location2x.png);
+        background-image: url(images/location2x.png);
         background-repeat: no-repeat;
         background-size: 100%;
     }
 
     #map-navigate-home:active {
-        background-image: url(../styles/images/location_active2x.png);
+        background-image: url(images/location_active2x.png);
         background-repeat: no-repeat;
         background-size: 100%;
     }
 
     .weather-icon {
-        background-image: url(../styles/images/sprite-weather2x.png);
+        background-image: url(images/sprite-weather2x.png);
         background-repeat: no-repeat;
         background-size: 100%;
     }
