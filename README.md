@@ -12,7 +12,7 @@ Install `kendo-mobile` (not there yet):
 ```
 npm install -g kendo-mobile
 ```
-Or clone the repo and link it locally (open the repo after cloning and run the folling the folder):
+Or clone the repo and link it locally (open the folder and run the following script):
 
 ```
 npm link
