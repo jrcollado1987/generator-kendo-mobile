@@ -18,11 +18,6 @@ Or clone the repo and link it locally:
 npm link
 ```
 
-Make a new directory, and `cd` into it:
-```
-mkdir my-new-project && cd $_
-```
-
 Run `grunt serve` for preview.
 
 ## Generators
@@ -30,7 +25,8 @@ Run `grunt serve` for preview.
 Available generators:
 
 * [kendo-mobile](#app) (aka [kendo-mobile:app](#app))
-* [kendo-mobile:tab](#tab)
+* [kendo-mobile:view](#view)
+* [kendo-mobile:list](#list)
 
 ### App
 Sets up a new Kendo mobile hybrid app, generating all the boilerplate you need to get started. The app generator  installs cordova, kendo and additional styles and scripts.
@@ -40,12 +36,20 @@ Example:
 yo kendo-mobile [app-name]
 ```
 
-### Tab
-Generates main tab-strip navigation with the coresponding views and connects them. It will modify your `index.html` file.
+### View
+Generates view, model for it and inserts it in the navigation.
 
 Example:
 ```bash
-yo kendo-mobile:tab
+yo kendo-mobile:view
+```
+
+### List
+Generates list and inserts in the selected view.
+
+Example:
+```bash
+yo kendo-mobile:list
 ```
 
 ## License
