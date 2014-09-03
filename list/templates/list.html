@@ -3,5 +3,11 @@
 <!-- this is the template used by the listview. template items are automatically
      wrapped in an <li> by Kendo UI Mobile -->
 <script type="text/x-kendo-template" id="viewTemplate">
-    <a>#: data.name #</a>
+    <div>
+        <% for (var i = 0; i < fields.length; i++) {
+        var f = fields[i];
+        %>
+        <p>#: data.<%= f %> #</p>
+        <% } %>
+    </div>
 </script>

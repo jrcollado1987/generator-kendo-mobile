@@ -57,15 +57,31 @@ var KendoMobileGenerator = yeoman.generators.Base.extend({
         ];
 
         this.prompt(prompts, function (props) {
-            this.everlive = props.everlive;
-            this.navigation = props.navigation;
-            this.view = props.view;
-            this.theme = props.theme;
-            this.transition = props.transition;
+            var that = this;
+            that.everlive = props.everlive;
+            that.navigation = props.navigation;
+            that.view = props.view;
+            that.theme = props.theme;
+            that.transition = props.transition;
+            if (that.everlive) {
+                that.prompt([
+                    {
+                        type: 'input',
+                        name: 'everliveKey',
+                        message: 'What is your Everlive API key?',
+                        default: 'h8KnncMXaRhvMXmp'
+                    }
+                ], function (props) {
+                    that.everliveKey = props.everliveKey;
+                    done();
+                });
+            }
+            else {
+                done();
+            }
 
             this.config.set('navigation', this.navigation);
 
-            done();
         }.bind(this));
     },
 

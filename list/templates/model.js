@@ -1,7 +1,30 @@
-app.models.<%= name %>.source = new kendo.data.DataSource({
-    data: [
-        { id: 1, name: 'Bob' },
-        { id: 2, name: 'Mary' },
-        { id: 3, name: 'John' }
-    ]
-});
+(function () {
+    var model = {
+        id: 'Id',
+        fields: {
+    <% for (var i = 0; i < fields.length; i++) {
+        var f = fields[i];
+    %>
+        <%= f %>: {
+                field: '<%= f %>',
+                defaultValue: ''
+            },
+     <% } %>
+        }
+    };
+
+    app.models.<%= view %>.source = new kendo.data.DataSource({
+        type: 'everlive',
+        schema: {
+            model: model
+        },
+        transport: {
+            // Required by Backend Services
+            typeName: '<%= collection %>'
+        },
+        change: function (e) {
+
+        },
+        sort: { field: 'CreatedAt', dir: 'desc' }
+    });
+})();

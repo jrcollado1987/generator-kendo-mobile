@@ -15,13 +15,27 @@ var KendoMobileTabGenerator = yeoman.generators.Base.extend({
             var prompts = [
                 {
                     type: 'input',
-                    name: 'baseView',
+                    name: 'view',
                     message: 'Which view you want to add the list to?',
-                    default: 'tab1'
+                    default: 'home'
+                },
+                {
+                    type: 'input',
+                    name: 'collection',
+                    message: 'What is the name of the everlive collection?',
+                    default: 'Activities'
+                },
+                {
+                    type: 'input',
+                    name: 'fields',
+                    message: 'What is the name of the everlive collection?',
+                    default: 'Text,Name'
                 }
             ];
             this.prompt(prompts, function (props) {
-                this.baseView = props.baseView;
+                this.view = props.view;
+                this.collection = props.collection;
+                this.fields = props.fields.split(',');
 
                 done();
             }.bind(this));
@@ -34,7 +48,7 @@ var KendoMobileTabGenerator = yeoman.generators.Base.extend({
 
             projectfiles: function () {
                 var listTemplate = this.src.read('list.html');
-                var viewFile = 'app/views/' + this.baseView + '.html';
+                var viewFile = 'app/views/' + this.view + '.html';
                 var view = this.engine(this.dest.read(viewFile), this);
 
                 var list = this.engine(listTemplate, this);
@@ -42,13 +56,11 @@ var KendoMobileTabGenerator = yeoman.generators.Base.extend({
                 view = this.domUpdate(view, ".view-content", list, 'a');
                 this.writeFileFromString(view, viewFile);
 
-                var model = 'app/scripts/' + this.baseView + '-list.js';
-                this.template('model.js', model, {
-                    name: this.baseView
-                });
+                var model = 'app/scripts/' + this.view + '-list.js';
+                this.template('model.js', model);
 
                 var index = this.engine(this.dest.read('app/index.html'), this);
-                index = this.appendScripts(index, '', ['scripts/' + this.baseView + '-list.js']);
+                index = this.appendScripts(index, '', ['scripts/' + this.view + '-list.js']);
                 this.writeFileFromString(index, 'app/index.html');
             }
         },
