@@ -28,7 +28,7 @@ var KendoMobileTabGenerator = yeoman.generators.Base.extend({
                 {
                     type: 'input',
                     name: 'fields',
-                    message: 'What is the name of the everlive collection?',
+                    message: 'Which fields you want to pick?',
                     default: 'Text,Name'
                 }
             ];
