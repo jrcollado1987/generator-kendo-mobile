@@ -1,4 +1,5 @@
 ## Yeoman
+Yeoman is console based tool that will help you scaffold app quickly. Just follow the next few steps.
 
 To install yeaoman just run the followin npm script:
 
@@ -56,9 +57,16 @@ Example:
 yo kendo-mobile:list
 ```
 
-### Run 
+### Run - Preview the app 
 
 Run `grunt serve` in the app root folder for preview in the browser.
+
+### Flow
+Here are the steps to scaffold full-blown app.
+
+1. Start by creating an app. (`kendo-mobile`)
+2. Add several views. (`kendo-mobile:view`)
+3. Add data-bound list to any of the views. (`kendo-mobile:list`)
 
 ## License
 
