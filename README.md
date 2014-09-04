@@ -28,7 +28,7 @@ Available generators:
 * [kendo-mobile:list](#list).
 
 ### App
-Sets up a new Kendo mobile hybrid app, generating all the boilerplate you need to get started. The app generator  installs cordova, kendo and additional styles and scripts.
+Sets up a new Kendo mobile hybrid app, generating all the boilerplate you need to get started. The app generator  installs cordova, kendo and additional styles and scripts. Please note that the 'app generator' did not create your initial view. You should create it manually by running `yo kendo-mobile:view` and provide the name of the initial view.
 
 #### Available options
 * Navigation - drawer, tabstrip and custom;
@@ -42,7 +42,8 @@ yo kendo-mobile [app-name]
 ```
 
 ### View
-Generates view, model for it and inserts it in the navigation.
+Generates view, model for it and inserts it in the navigation. 
+Please make sure that the first view you add is the initial view you set for your app.
 
 Example:
 ```bash
