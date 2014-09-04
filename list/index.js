@@ -11,6 +11,7 @@ var KendoMobileTabGenerator = yeoman.generators.Base.extend({
 
         prompting: function () {
             var done = this.async();
+            var that = this;
 
             var prompts = [
                 {
@@ -25,13 +26,10 @@ var KendoMobileTabGenerator = yeoman.generators.Base.extend({
                     message: 'Choose data source type?',
                     choices: ['everlive', 'odata', 'rest'],
                     default: 'everlive'
-                },
-                {
-                    type: 'input',
-                    name: 'url',
-                    message: 'What is the service url? (non-everlive)',
-                    default: 'http://demos.telerik.com/kendo-ui/service/Northwind.svc'
-                },
+                }
+            ];
+
+            var furtherPrompts = [
                 {
                     type: 'input',
                     name: 'collection',
@@ -45,14 +43,36 @@ var KendoMobileTabGenerator = yeoman.generators.Base.extend({
                     default: 'Text,Name'
                 }
             ];
-            this.prompt(prompts, function (props) {
-                this.view = props.view;
-                this.type = props.type;
-                this.url = props.url;
-                this.collection = props.collection;
-                this.fields = props.fields.split(',');
 
-                done();
+            var finish = function () {
+                that.prompt(furtherPrompts, function (props) {
+                    that.collection = props.collection;
+                    that.fields = props.fields.split(',');
+
+                    done();
+                });
+            }
+
+            that.prompt(prompts, function (props) {
+                that.view = props.view;
+                that.type = props.type;
+                if (this.type != 'everlive') {
+                    that.prompt([
+                        {
+                            type: 'input',
+                            name: 'url',
+                            message: 'What is the service base url?',
+                            default: 'http://demos.telerik.com/kendo-ui/service/Northwind.svc'
+                        }
+                    ], function (props) {
+                        that.url = props.url;
+                        finish();
+                    });
+                }
+                else {
+                    finish();
+                }
+
             }.bind(this));
         },
 
