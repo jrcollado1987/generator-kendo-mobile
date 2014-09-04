@@ -20,10 +20,23 @@ var KendoMobileTabGenerator = yeoman.generators.Base.extend({
                     default: 'home'
                 },
                 {
+                    type: 'list',
+                    name: 'type',
+                    message: 'Choose data source type?',
+                    choices: ['everlive', 'odata', 'rest'],
+                    default: 'everlive'
+                },
+                {
+                    type: 'input',
+                    name: 'url',
+                    message: 'What is the service url? (non-everlive)',
+                    default: 'http://demos.telerik.com/kendo-ui/service/Northwind.svc'
+                },
+                {
                     type: 'input',
                     name: 'collection',
-                    message: 'What is the name of the everlive collection?',
-                    default: 'Activities'
+                    message: 'What is the name of the data collection?',
+                    default: 'Products'
                 },
                 {
                     type: 'input',
@@ -34,6 +47,8 @@ var KendoMobileTabGenerator = yeoman.generators.Base.extend({
             ];
             this.prompt(prompts, function (props) {
                 this.view = props.view;
+                this.type = props.type;
+                this.url = props.url;
                 this.collection = props.collection;
                 this.fields = props.fields.split(',');
 

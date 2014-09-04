@@ -14,14 +14,20 @@
     };
 
     app.models.<%= view %>.source = new kendo.data.DataSource({
-        type: 'everlive',
+        type: '<%= type %>',
         schema: {
             model: model
         },
         transport: {
-            // Required by Backend Services
-            typeName: '<%= collection %>'
-        },
+            <% if (type == 'everlive') { %>
+                // Required by Backend Services
+                typeName: '<%= collection %>'
+            <% } else { %>
+                    read: {
+                        url: "<%= url %>/<%= collection %>"
+                    }
+            <% } %>
+            },
         change: function (e) {
 
         },
