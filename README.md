@@ -51,7 +51,7 @@ yo kendo-mobile:view
 ```
 
 ### List
-Generates list and inserts in the selected view. The list data is hard-coded with 3 items for now.
+Generates list and inserts in the selected view. You can choose the data source type - everlive, OData or REST and configure it with the appropriate options.
 
 Example:
 ```bash
