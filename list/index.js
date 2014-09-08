@@ -21,6 +21,12 @@ var KendoMobileTabGenerator = yeoman.generators.Base.extend({
                     default: 'home'
                 },
                 {
+                    type: 'input',
+                    name: 'name',
+                    message: 'Provide a name for the list widget.',
+                    default: 'home-list'
+                },
+                {
                     type: 'list',
                     name: 'type',
                     message: 'Choose data source type?',
@@ -51,10 +57,11 @@ var KendoMobileTabGenerator = yeoman.generators.Base.extend({
 
                     done();
                 });
-            }
+            };
 
             that.prompt(prompts, function (props) {
                 that.view = props.view;
+                that.name = props.name;
                 that.type = props.type;
                 if (this.type != 'everlive') {
                     that.prompt([
@@ -91,11 +98,11 @@ var KendoMobileTabGenerator = yeoman.generators.Base.extend({
                 view = this.domUpdate(view, ".view-content", list, 'a');
                 this.writeFileFromString(view, viewFile);
 
-                var model = 'app/scripts/' + this.view + '-list.js';
+                var model = 'app/scripts/' + this.name + '.js';
                 this.template('model.js', model);
 
                 var index = this.engine(this.dest.read('app/index.html'), this);
-                index = this.appendScripts(index, '', ['scripts/' + this.view + '-list.js']);
+                index = this.appendScripts(index, '', ['scripts/' + this.name + '.js']);
                 this.writeFileFromString(index, 'app/index.html');
             }
         },
