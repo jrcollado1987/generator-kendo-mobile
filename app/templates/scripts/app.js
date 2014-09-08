@@ -66,12 +66,13 @@
             });
         };
 
+        <% if(everlive && everliveKey) { %>
          // Initialize Everlive SDK
         app.evelive = new Everlive({
              apiKey: app.settings.everlive.apiKey,
              scheme: app.settings.everlive.scheme
         });
-
+        <% } %>
 
          if (window.cordova) {
         // this function is called by Cordova when the application is loaded by the device
