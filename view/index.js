@@ -5,24 +5,26 @@ var _ = require('lodash');
 
 var KendoMobileViewGenerator = yeoman.generators.Base.extend({
     initializing: function () {
+        this.argument('name', { type: String, required: false });
     },
 
     prompting: function () {
-        var done = this.async();
+        if (!this.name) {
+            var done = this.async();
+            var prompts = [
+                {
+                    type: 'input',
+                    name: 'name',
+                    message: 'Name the view?',
+                    default: 'home'
+                }
+            ];
+            this.prompt(prompts, function (props) {
+                this.name = props.name;
 
-        var prompts = [
-            {
-                type: 'input',
-                name: 'name',
-                message: 'Name the view?',
-                default: 'home'
-            }
-        ];
-        this.prompt(prompts, function (props) {
-            this.name = props.name;
-
-            done();
-        }.bind(this));
+                done();
+            }.bind(this));
+        }
     },
 
     writing: {

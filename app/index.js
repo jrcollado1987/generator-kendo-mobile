@@ -96,6 +96,8 @@ var KendoMobileGenerator = yeoman.generators.Base.extend({
             }
             this.template('scripts/app.js', 'app/scripts/app.js');
             this.template('main.css', 'app/styles/main.css');
+
+            this.composeWith('kendo-mobile:view', { arguments: [this.view]});
         },
 
         projectfiles: function () {
