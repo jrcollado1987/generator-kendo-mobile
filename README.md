@@ -25,10 +25,11 @@ Available generators:
 
 * [kendo-mobile](#app) (aka [kendo-mobile:app](#app));
 * [kendo-mobile:view](#view);
-* [kendo-mobile:list](#list).
+* [kendo-mobile:list](#list);
+* [kendo-mobile:signup](#signup).
 
 ### App
-Sets up a new Kendo mobile hybrid app, generating all the boilerplate you need to get started. The app generator  installs cordova, kendo and additional styles and scripts. Please note that the 'app generator' did not create your initial view. You should create it manually by running `yo kendo-mobile:view` and provide the name of the initial view.
+Sets up a new Kendo mobile hybrid app, generating all the boilerplate you need to get started. The app generator  installs cordova, kendo and additional styles and scripts. Please note that the 'app generator' did not create your initial view. You should create it manually by running `yo kendo-mobile:view` and provide the name of the initial [view](#view). The initial [view](#view) will be automatically generated.
 
 #### Available options
 * Navigation - drawer, tabstrip and custom;
@@ -42,8 +43,7 @@ yo kendo-mobile [app-name]
 ```
 
 ### View
-Generates view, model for it and inserts it in the navigation. 
-Please make sure that the first view you add is the initial view you set for your app.
+Generates view, model for it and inserts it in the navigation.
 
 Example:
 ```bash
@@ -57,6 +57,15 @@ Example:
 ```bash
 yo kendo-mobile:list
 ```
+
+### Signup
+Generates signup form with several common user profile fields. You can add it to any view you wish.
+
+Example:
+```bash
+yo kendo-mobile:signup
+```
+
 
 ### Run in the browser 
 
