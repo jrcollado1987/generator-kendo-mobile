@@ -58,13 +58,13 @@ Example:
 yo kendo-mobile:list
 ```
 
-### Run - Preview in the browser 
+### Run in the browser 
 
 Run `grunt serve` in the app root folder for fast and easy preview in the browser.
 
 ### Run in AppBuilder simulator
 
-Change your current directory to the 'app' folder. Make sure you have [appbuilder cli](https://github.com/Icenium/icenium-cli) installed. Then you need to init the AppBuilder app. And lastly just run the simulator.
+Change your current directory to the 'app' folder. Make sure you have [appbuilder cli](https://www.npmjs.org/package/appbuilder) installed. Then you need to init the AppBuilder app. And lastly just run the simulator.
 
 ```bash
 npm install -g appbuilder
