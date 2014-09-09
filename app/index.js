@@ -95,6 +95,7 @@ var KendoMobileGenerator = yeoman.generators.Base.extend({
                 this.src.copy('static/everlive.all.min.js', 'app/lib/everlive.all.min.js');
             }
             this.template('scripts/app.js', 'app/scripts/app.js');
+            this.template('main.css', 'app/styles/main.css');
         },
 
         projectfiles: function () {
@@ -103,7 +104,7 @@ var KendoMobileGenerator = yeoman.generators.Base.extend({
             this.template('_gruntfile.js', 'Gruntfile.js');
 
             this.directory('static/kendo', 'app/kendo');
-            this.directory('static/styles', 'app/styles');
+
             this.directory('static/cordova', 'app');
 
             //this.template('index.html', 'app/index.html');

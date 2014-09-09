@@ -54,7 +54,7 @@ var KendoMobileSignupGenerator = yeoman.generators.Base.extend({
             this.template('model.js', model);
 
             var index = this.engine(this.dest.read('app/index.html'), this);
-            index = this.appendScripts(index, '', ['/scripts/signup.js']);
+            index = this.appendScripts(index, '', ['scripts/signup.js']);
             this.writeFileFromString(index, 'app/index.html');
         }
     },
