@@ -13,7 +13,7 @@
         }
     };
 
-    app.models.<%= name %>.source = new kendo.data.DataSource({
+    app.models.<%= view %>.<%= name %> = new kendo.data.DataSource({
         type: '<%= type %>',
         schema: {
             model: model

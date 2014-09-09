@@ -1,8 +1,8 @@
-<ul data-role="listview" id="<%= name %>" data-style="inset" data-template="viewTemplate" data-bind="source: source"></ul>
+<ul data-role="listview" id="<%= name %>" data-style="inset" data-template="<%= name %>Template" data-bind="source: <%= name %>"></ul>
 
 <!-- this is the template used by the listview. template items are automatically
      wrapped in an <li> by Kendo UI Mobile -->
-<script type="text/x-kendo-template" id="viewTemplate">
+<script type="text/x-kendo-template" id="<%= name %>Template">
     <div>
         <% for (var i = 0; i < fields.length; i++) {
         var f = fields[i];

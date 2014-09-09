@@ -23,8 +23,8 @@ var KendoMobileTabGenerator = yeoman.generators.Base.extend({
                 {
                     type: 'input',
                     name: 'name',
-                    message: 'Provide a name for the list widget.',
-                    default: 'home-list'
+                    message: 'Provide a name (id) for the list widget.',
+                    default: 'homeList'
                 },
                 {
                     type: 'list',
