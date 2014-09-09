@@ -3,8 +3,6 @@
 
 var _ = require('lodash');
 var path = require('path');
-var cordova = require('cordova');
-var spawn = require('child_process').spawn;
 
 module.exports = function (grunt) {
     // Load grunt tasks automatically
@@ -27,10 +25,6 @@ module.exports = function (grunt) {
 
         // Watches files for changes and runs tasks based on the changed files
         watch: {
-            bower: {
-                files: ['bower.json'],
-                tasks: ['wiredep']
-            },
             js: {
                 files: ['<%%= yeoman.app %>/<%%= yeoman.scripts %>/**/*.js'],
                 tasks: ['newer:jshint:all'],
@@ -137,17 +131,6 @@ module.exports = function (grunt) {
                         dest: '.tmp/<%%= yeoman.styles %>/'
                     }
                 ]
-            }
-        },
-
-        // Automatically inject Bower components into the app
-        wiredep: {
-            options: {
-                cwd: '<%%= yeoman.app %>'
-            },
-            app: {
-                src: ['<%%= yeoman.app %>/index.html'],
-                ignorePath: /\.\.\//
             }
         },
 
@@ -281,30 +264,10 @@ module.exports = function (grunt) {
 
         grunt.task.run([
             'clean:server',
-            //'wiredep',
             'concurrent:server',
             'autoprefixer',
             'connect:livereload',
             'watch'
         ]);
     });
-
-    grunt.registerTask('build', [
-        'clean:dist',
-//        'wiredep',
-        'useminPrepare',
-        'concurrent:dist',
-        'autoprefixer',
-        'concat',
-        'copy:dist',
-        'cssmin',
-        'uglify',
-        'usemin',
-        'htmlmin'
-    ]);
-
-    grunt.registerTask('default', [
-        'newer:jshint',
-        'build'
-    ]);
 };
