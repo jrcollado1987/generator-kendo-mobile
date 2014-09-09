@@ -90,7 +90,6 @@ var KendoMobileGenerator = yeoman.generators.Base.extend({
             this.dest.mkdir('app');
 
             this.src.copy('_package.json', 'package.json');
-            this.src.copy('_bower.json', 'bower.json');
 
             if (this.everlive) {
                 this.src.copy('static/everlive.all.min.js', 'app/lib/everlive.all.min.js');
