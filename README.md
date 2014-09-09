@@ -58,9 +58,21 @@ Example:
 yo kendo-mobile:list
 ```
 
-### Run - Preview the app 
+### Run - Preview in the browser 
 
-Run `grunt serve` in the app root folder for preview in the browser.
+Run `grunt serve` in the app root folder for fast and easy preview in the browser.
+
+### Run in AppBuilder simulator
+
+Change your current directory to the 'app' folder. Make sure you have [appbuilder cli](https://github.com/Icenium/icenium-cli) installed. Then you need to init the AppBuilder app. And lastly just run the simulator.
+
+```bash
+npm install -g appbuilder
+cd app
+appbuilder init hybrid
+appbuilder simulate
+```
+
 
 ### Flow
 Here are the steps to scaffold full-blown app.
