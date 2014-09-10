@@ -42,12 +42,13 @@ var KendoMobileSignupGenerator = yeoman.generators.Base.extend({
 
         projectfiles: function () {
             var viewTemplate = this.src.read('view.html');
+
             var viewFile = 'app/views/' + this.view + '.html';
             var view = this.engine(this.dest.read(viewFile), this);
+            var content = this.engine(viewTemplate, this);
 
-            var list = this.engine(viewTemplate, this);
+            view = this.domUpdate(view, ".view-content", content, 'r');
 
-            view = this.domUpdate(view, ".view-content", list, 'a');
             this.writeFileFromString(view, viewFile);
 
             var model = 'app/scripts/signup.js';
