@@ -52,7 +52,7 @@
             {
                 "name": "type",
                 "type": "string",
-                "description": "Which navigation type you choose?",
+                "description": "What type of Data Provider you choose?",
                 "required": true,
                 "default": "everlive",
                 "enum": ["everlive", "odata", "json", "xml", "object"]
