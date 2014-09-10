@@ -1,0 +1,160 @@
+{
+    "app": {
+        "name": "Kendo Mobile App",
+        "description": "",
+        "type": "object",
+        "properties": [
+            {
+                "name": "navigation",
+                "type": "string",
+                "description": "Which navigation type you choose?",
+                "required": true,
+                "default": "tabstrip",
+                "enum": ["tabstrip", "drawer", "custom"]
+            },
+            {
+                "name": "view",
+                "type": "string",
+                "description": "Which will be your initial view?",
+                "required": true,
+                "default": "home"
+            },
+            {
+                "name": "theme",
+                "type": "string",
+                "description": "Which theme you prefer?",
+                "required": false,
+                "default": "flat",
+                "enum": ["flat", "bootstrap"]
+            },
+            {
+                "name": "transition",
+                "type": "string",
+                "description": "Which transition type you prefer?",
+                "required": false,
+                "default": "slide",
+                "enum": ["slide", "zoom", "fade"]
+            }
+        ]
+    },
+    "dataSource": {
+        "name": "Kendo Mobile DataSource",
+        "description": "",
+        "type": "object",
+        "properties": [
+            {
+                "name": "name",
+                "type": "string",
+                "description": "What is the name (id) of the DataSource?",
+                "required": true,
+                "default": "myDataSource"
+            },
+            {
+                "name": "type",
+                "type": "string",
+                "description": "Which navigation type you choose?",
+                "required": true,
+                "default": "everlive",
+                "enum": ["everlive", "odata", "json", "xml", "object"]
+            },
+            {
+                "name": "everliveKey",
+                "type": "string",
+                "description": "What is your Everlive API key?",
+                "default": "h8KnncMXaRhvMXmp"
+            },
+            {
+                "name": "url",
+                "type": "string",
+                "description": "What is the service URL?",
+                "default": "http://demos.telerik.com/kendo-ui/service/Northwind.svc"
+            }
+        ],
+        "dependencies": [
+            {
+                "name": "type",
+                "value": "everlive",
+                "required": ["everliveKey"]
+            },
+            {
+                "name": "type",
+                "value": "odata",
+                "required": ["url"]
+            },
+            {
+                "name": "type",
+                "value": "json",
+                "required": ["url"]
+            }
+        ]
+    },
+    "view": {
+        "name": "Kendo Mobile View",
+        "description": "",
+        "type": "object",
+        "properties": [
+            {
+                "name": "name",
+                "type": "string",
+                "description": "What is the name (id) of the View?",
+                "required": true,
+                "default": "home"
+            },
+            {
+                "name": "dataProviders",
+                "type": "array",
+                "description": "Opa Gangnam",
+                "default": [],
+                "no-prompt": true
+            },
+            {
+                "name": "components",
+                "type": "array",
+                "description": "Which components you choose?",
+                "default": [],
+                "no-prompt": true
+            }
+        ]
+    },
+    "signup": {
+
+    },
+    "list": {
+        "name": "Kendo Mobile Databound List",
+        "description": "",
+        "type": "object",
+        "properties": [
+            {
+                "name": "name",
+                "type": "string",
+                "description": "What is the name of this list?",
+                "required": true,
+                "default": "myList"
+            },
+            {
+                "name": "dataSource",
+                "type": "string",
+                "description": "What is the name of the DataSource you want to bind to?",
+                "required": true,
+                "default": "myDataSource"
+            },
+            {
+                "name": "collection",
+                "type": "string",
+                "description": "What is the name of the data collection?",
+                "default": "Products"
+            },
+            {
+                "name": "fields",
+                "type": "array",
+                "description": "Which fields you want to pick?",
+                "default": ["Id", "Name"],
+                "items": [
+                    {
+                        "type": "string"
+                    }
+                ]
+            }
+        ]
+    }
+}
