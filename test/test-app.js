@@ -20,8 +20,6 @@ describe('kendo-mobile:app', function () {
 
     it('creates files', function () {
         assert.file([
-            'app/views/default.html',
-            'app/scripts/default.js',
             'package.json',
             '.editorconfig',
             '.jshintrc'
@@ -34,5 +32,4 @@ describe('kendo-mobile:app', function () {
             'app/scripts/default.js'
         ]);
     });
-
 });
