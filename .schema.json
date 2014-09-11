@@ -34,6 +34,13 @@
                 "required": false,
                 "default": "slide",
                 "enum": ["slide", "zoom", "fade"]
+            },
+            {
+                "name": "dataProviders",
+                "type": "array",
+                "description": "List of Data Providers of the app.",
+                "default": [],
+                "no-prompt": true
             }
         ]
     },
@@ -101,16 +108,9 @@
                 "default": "home"
             },
             {
-                "name": "dataProviders",
-                "type": "array",
-                "description": "Opa Gangnam",
-                "default": [],
-                "no-prompt": true
-            },
-            {
                 "name": "components",
                 "type": "array",
-                "description": "Which components you choose?",
+                "description": "List of the children components of this view.",
                 "default": [],
                 "no-prompt": true
             }

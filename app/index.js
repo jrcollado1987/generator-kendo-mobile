@@ -3,8 +3,7 @@ var path = require('path'),
     yeoman = require('yeoman-generator'),
     yosay = require('yosay'),
     _ = require('lodash'),
-    schema = require('../schema'),
-    appSchema;
+    schema = require('../schema');
 
 var KendoMobileGenerator = yeoman.generators.Base.extend({
     initializing: function () {
@@ -12,8 +11,6 @@ var KendoMobileGenerator = yeoman.generators.Base.extend({
         this.argument('appname', { type: String, required: false });
         this.appname = this.appname || path.basename(process.cwd());
         this.appname = this._.camelize(this._.slugify(this._.humanize(this.appname)));
-
-        appSchema = schema.generator('app');
     },
 
     prompting: function () {
@@ -24,17 +21,7 @@ var KendoMobileGenerator = yeoman.generators.Base.extend({
             'Welcome to the legendary Kendo Mobile generator!'
         ));
 
-        var prompts = _.map(appSchema['properties'], function (prop) {
-            var prompt = {
-                name: prop.name,
-                message: prop.description,
-                default: prop.default
-            };
-
-            var prompt = _.extend(prompt, schema.promptType(prop));
-
-            return prompt;
-        });
+        var prompts = schema.prompts('app');
 
         this.prompt(prompts, function (props) {
             var that = this;
