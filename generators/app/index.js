@@ -1,11 +1,11 @@
 'use strict';
 var path = require('path'),
-    yeoman = require('yeoman-generator'),
+    Generator = require('../../util/generator'),
     yosay = require('yosay'),
     _ = require('lodash'),
     schema = require('../../schema/generators');
 
-var KendoMobileGenerator = yeoman.generators.Base.extend({
+var KendoMobileGenerator = new Generator({
     initializing: function () {
         this.pkg = require('../../package.json');
         this.argument('appname', { type: String, required: false });
@@ -13,7 +13,7 @@ var KendoMobileGenerator = yeoman.generators.Base.extend({
         this.appname = this._.camelize(this._.slugify(this._.humanize(this.appname)));
     },
 
-    prompting: function () {
+    _prompting: function () {
         var that = this,
             done = that.async();
 

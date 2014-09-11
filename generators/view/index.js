@@ -1,14 +1,14 @@
 'use strict';
-var yeoman = require('yeoman-generator'),
+var Generator = require('../../util/generator'),
     schema = require('../../schema/generators'),
     _ = require('lodash');
 
-var KendoMobileViewGenerator = yeoman.generators.Base.extend({
+var KendoMobileViewGenerator = new Generator({
     initializing: function () {
         this.argument('name', { type: String, required: false });
     },
 
-    prompting: function () {
+    _prompting: function () {
         var that = this;
 
         if (!that.name) {

@@ -1,15 +1,15 @@
 'use strict';
 var util = require('util');
 var path = require('path');
-var yeoman = require('yeoman-generator');
+Generator = require('../../util/generator'),
 var yosay = require('yosay');
 var _ = require('lodash');
 
-var KendoMobileTabGenerator = yeoman.generators.Base.extend({
+var KendoMobileTabGenerator = new Generator({
         initializing: function () {
         },
 
-        prompting: function () {
+        _prompting: function () {
             var done = this.async();
             var that = this;
 

@@ -1,13 +1,13 @@
 'use strict';
-var yeoman = require('yeoman-generator'),
+var Generator = require('../../util/generator'),
     schema = require('../../schema/generators'),
     _ = require('lodash');
 
-var KendoMobileSignupGenerator = yeoman.generators.Base.extend({
+var KendoMobileSignupGenerator = new Generator({
     initializing: function () {
     },
 
-    prompting: function () {
+    _prompting: function () {
         var that = this,
             done = that.async(),
             prompts = schema.prompts('signup');
