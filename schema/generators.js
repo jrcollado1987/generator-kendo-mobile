@@ -28,6 +28,17 @@ var promptType = function (prop) {
 };
 
 module.exports = {
+    properties: function (generator) {
+        var genSchema = generatorSchema(generator);
+
+        return _.chain(genSchema['properties'])
+            .filter(function (prop) {
+                return !prop['no-prompt'];
+            })
+            .map(function (prop) {
+                return prop.name;
+            }).value();
+    },
     prompts: function (generator) {
         var genSchema = generatorSchema(generator);
 

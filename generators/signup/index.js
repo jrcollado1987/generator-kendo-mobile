@@ -1,38 +1,23 @@
 'use strict';
-var path = require('path');
-var yeoman = require('yeoman-generator');
-var _ = require('lodash');
+var yeoman = require('yeoman-generator'),
+    schema = require('../../schema/generators'),
+    _ = require('lodash');
 
 var KendoMobileSignupGenerator = yeoman.generators.Base.extend({
     initializing: function () {
     },
 
     prompting: function () {
-        var done = this.async();
-        var that = this;
-
-        var prompts = [
-            {
-                type: 'input',
-                name: 'view',
-                message: 'Which view you want to add the signup form to?',
-                default: 'home'
-            },
-            {
-                type: 'input',
-                name: 'navigate',
-                message: 'Which view to navigate on successful signup?',
-                default: 'welcome'
-            }
-        ];
+        var that = this,
+            done = that.async(),
+            prompts = schema.prompts('signup');
 
         that.prompt(prompts, function (props) {
-            that.view = props.view;
-            that.navigate = props.navigate;
+            _.extend(that, props);
 
             done();
 
-        }.bind(this));
+        }.bind(that));
     },
 
     writing: {

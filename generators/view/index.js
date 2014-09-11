@@ -1,7 +1,7 @@
 'use strict';
-var path = require('path');
-var yeoman = require('yeoman-generator');
-var _ = require('lodash');
+var yeoman = require('yeoman-generator'),
+    schema = require('../../schema/generators'),
+    _ = require('lodash');
 
 var KendoMobileViewGenerator = yeoman.generators.Base.extend({
     initializing: function () {
@@ -9,21 +9,17 @@ var KendoMobileViewGenerator = yeoman.generators.Base.extend({
     },
 
     prompting: function () {
-        if (!this.name) {
+        var that = this;
+
+        if (!that.name) {
             var done = this.async();
-            var prompts = [
-                {
-                    type: 'input',
-                    name: 'name',
-                    message: 'Name the view?',
-                    default: 'home'
-                }
-            ];
-            this.prompt(prompts, function (props) {
-                this.name = props.name;
+            var prompts = schema.prompts('view');
+
+            that.prompt(prompts, function (props) {
+                _.extend(that, props);
 
                 done();
-            }.bind(this));
+            }.bind(that));
         }
     },
 

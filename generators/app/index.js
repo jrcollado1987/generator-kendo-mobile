@@ -14,24 +14,21 @@ var KendoMobileGenerator = yeoman.generators.Base.extend({
     },
 
     prompting: function () {
-        var done = this.async();
+        var that = this,
+            done = that.async();
 
         // Have Yeoman greet the user.
-        this.log(yosay(
+        that.log(yosay(
             'Welcome to the legendary Kendo Mobile generator!'
         ));
 
         var prompts = schema.prompts('app');
 
-        this.prompt(prompts, function (props) {
-            var that = this;
-            that.navigation = props.navigation;
-            that.view = props.view;
-            that.theme = props.theme;
-            that.transition = props.transition;
+        that.prompt(prompts, function (props) {
+            _.extend(that, props);
 
             done();
-        }.bind(this));
+        }.bind(that));
     },
 
     writing: {

@@ -117,7 +117,31 @@
         ]
     },
     "signup": {
-
+        "name": "Mobile Signup Form",
+        "description": "",
+        "type": "object",
+        "properties": [
+            {
+                "name": "view",
+                "type": "string",
+                "description": "Which view you want to add the list to?",
+                "required": true,
+                "default": "home"
+            },
+            {
+                "name": "name",
+                "type": "string",
+                "description": "What is the name of this component?",
+                "required": true,
+                "default": "signupForm"
+            },
+            {
+                "name": "navigate",
+                "type": "string",
+                "description": "Which view to navigate on successful signup?",
+                "default": "welcome"
+            }
+        ]
     },
     "list": {
         "name": "Kendo Mobile Databound List",
@@ -125,9 +149,16 @@
         "type": "object",
         "properties": [
             {
+                "name": "view",
+                "type": "string",
+                "description": "Which view you want to add the list to?",
+                "required": true,
+                "default": "home"
+            },
+            {
                 "name": "name",
                 "type": "string",
-                "description": "What is the name of this list?",
+                "description": "What is the name of this component?",
                 "required": true,
                 "default": "myList"
             },
