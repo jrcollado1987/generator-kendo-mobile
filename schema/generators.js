@@ -4,7 +4,7 @@ var _ = require('lodash'),
 
 var generatorSchema = function (generator) {
     if (!schema) {
-        schema = require('./.schema.json');
+        schema = require('./../.schema.json');
     }
 
     return schema[generator];
