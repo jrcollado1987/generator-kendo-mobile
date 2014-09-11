@@ -31,7 +31,6 @@ var KendoMobileGenerator = yeoman.generators.Base.extend({
             that.transition = props.transition;
 
             done();
-
         }.bind(this));
     },
 
