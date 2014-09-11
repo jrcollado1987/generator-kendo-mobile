@@ -8,10 +8,10 @@ var os = require('os');
 
 describe('kendo-mobile:app', function () {
     before(function (done) {
-        helpers.run(path.join(__dirname, '../app'))
+        helpers.run(path.join(__dirname, '../generators/app'))
             .inDir(path.join(os.tmpdir(), './temp-test'))
             .withOptions({})
-            .withGenerators([path.join(__dirname, '../view')])
+            .withGenerators([path.join(__dirname, '../generators/view')])
             .withPrompts({
                 //view: 'default'
             })
