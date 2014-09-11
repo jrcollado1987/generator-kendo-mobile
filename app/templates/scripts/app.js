@@ -5,13 +5,6 @@
     var app = {
         models: {},
         settings: {
-        <% if(everlive && everliveKey) { %>
-
-            everlive: {
-                apiKey: '<%= everliveKey %>', // Put your Backend Services API key here
-                scheme: 'http'
-            },
-        <% } %>
             eqatec: {
                 productKey: '$EQATEC_PRODUCT_KEY$',  // Put your EQATEC product key here
                 version: '1.0.0.0' // Put your application version here
@@ -65,14 +58,6 @@
             initial: 'views/<%= view %>.html'
             });
         };
-
-        <% if(everlive && everliveKey) { %>
-         // Initialize Everlive SDK
-        app.evelive = new Everlive({
-             apiKey: app.settings.everlive.apiKey,
-             scheme: app.settings.everlive.scheme
-        });
-        <% } %>
 
          if (window.cordova) {
         // this function is called by Cordova when the application is loaded by the device

@@ -1,9 +1,10 @@
 'use strict';
-var util = require('util');
-var path = require('path');
-var yeoman = require('yeoman-generator');
-var yosay = require('yosay');
-var schema = require('.schema');
+var path = require('path'),
+    yeoman = require('yeoman-generator'),
+    yosay = require('yosay'),
+    _ = require('lodash'),
+    schema = require('../schema'),
+    appSchema;
 
 var KendoMobileGenerator = yeoman.generators.Base.extend({
     initializing: function () {
@@ -11,6 +12,8 @@ var KendoMobileGenerator = yeoman.generators.Base.extend({
         this.argument('appname', { type: String, required: false });
         this.appname = this.appname || path.basename(process.cwd());
         this.appname = this._.camelize(this._.slugify(this._.humanize(this.appname)));
+
+        appSchema = schema.generator('app');
     },
 
     prompting: function () {
@@ -21,67 +24,26 @@ var KendoMobileGenerator = yeoman.generators.Base.extend({
             'Welcome to the legendary Kendo Mobile generator!'
         ));
 
-        var prompts = [
-            {
-                type: 'list',
-                name: 'navigation',
-                message: 'Which navigation type you choose?',
-                choices: ['tabstrip', 'drawer', 'custom'],
-                default: 'tabstrip'
-            },
-            {
-                type: 'input',
-                name: 'view',
-                message: 'Which will be your initial view?',
-                default: 'home'
-            },
-            {
-                type: 'list',
-                name: 'theme',
-                message: 'Which theme you prefer?',
-                choices: ['default', 'flat', 'bootstrap'],
-                default: 'flat'
-            },
-            {
-                type: 'list',
-                name: 'transition',
-                message: 'Which transition type you prefer?',
-                choices: ['slide', 'zoom', 'fade'],
-                default: 'slide'
-            },
-            {
-                type: 'confirm',
-                name: 'everlive',
-                message: 'Do you want to use everlive backend service?',
-                default: true
-            }
-        ];
+        var prompts = _.map(appSchema['properties'], function (prop) {
+            var prompt = {
+                name: prop.name,
+                message: prop.description,
+                default: prop.default
+            };
+
+            var prompt = _.extend(prompt, schema.promptType(prop));
+
+            return prompt;
+        });
 
         this.prompt(prompts, function (props) {
             var that = this;
-            that.everlive = props.everlive;
             that.navigation = props.navigation;
             that.view = props.view;
             that.theme = props.theme;
             that.transition = props.transition;
-            if (that.everlive) {
-                that.prompt([
-                    {
-                        type: 'input',
-                        name: 'everliveKey',
-                        message: 'What is your Everlive API key?',
-                        default: 'h8KnncMXaRhvMXmp'
-                    }
-                ], function (props) {
-                    that.everliveKey = props.everliveKey;
-                    done();
-                });
-            }
-            else {
-                done();
-            }
 
-            this.config.set('navigation', this.navigation);
+            done();
 
         }.bind(this));
     },
@@ -92,9 +54,9 @@ var KendoMobileGenerator = yeoman.generators.Base.extend({
 
             this.src.copy('_package.json', 'package.json');
 
-            if (this.everlive) {
-                this.src.copy('static/everlive.all.min.js', 'app/lib/everlive.all.min.js');
-            }
+//            if (this.everlive) {
+//                this.src.copy('static/everlive.all.min.js', 'app/lib/everlive.all.min.js');
+//            }
             this.template('scripts/app.js', 'app/scripts/app.js');
             this.template('main.css', 'app/styles/main.css');
 
@@ -124,6 +86,8 @@ var KendoMobileGenerator = yeoman.generators.Base.extend({
     },
 
     end: function () {
+        this.config.set('navigation', this.navigation);
+
         this.installDependencies();
     }
 });
