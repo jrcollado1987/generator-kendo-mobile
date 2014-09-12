@@ -1,28 +1,14 @@
 'use strict';
-var Generator = require('../../util/generator'),
-    schema = require('../../schema/generators'),
+var GeneratorBase = require('../../util/generator'),
     _ = require('lodash');
 
-var KendoMobileSignupGenerator = new Generator({
+var KendoMobileSignupGenerator = new GeneratorBase({
     initializing: function () {
-    },
-
-    _prompting: function () {
-        var that = this,
-            done = that.async(),
-            prompts = schema.prompts('signup');
-
-        that.prompt(prompts, function (props) {
-            _.extend(that, props);
-
-            done();
-
-        }.bind(that));
+        this.generatorName = 'signup';
     },
 
     writing: {
         app: function () {
-            var that = this;
         },
 
         projectfiles: function () {

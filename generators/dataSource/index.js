@@ -8,7 +8,6 @@ var KendoMobileSignupGenerator = SchemaGenerator.extend({
 
     writing: {
         app: function () {
-            var that = this;
         },
 
         projectfiles: function () {

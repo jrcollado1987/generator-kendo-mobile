@@ -1,26 +1,12 @@
 'use strict';
-var Generator = require('../../util/generator'),
-    schema = require('../../schema/generators'),
+var GeneratorBase = require('../../util/generator'),
     _ = require('lodash');
 
-var KendoMobileViewGenerator = new Generator({
+var KendoMobileViewGenerator = new GeneratorBase({
     initializing: function () {
         this.argument('name', { type: String, required: false });
-    },
 
-    _prompting: function () {
-        var that = this;
-
-        if (!that.name) {
-            var done = this.async();
-            var prompts = schema.prompts('view');
-
-            that.prompt(prompts, function (props) {
-                _.extend(that, props);
-
-                done();
-            }.bind(that));
-        }
+        this.generatorName = 'view';
     },
 
     writing: {

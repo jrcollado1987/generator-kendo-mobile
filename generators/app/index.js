@@ -1,34 +1,16 @@
 'use strict';
 var path = require('path'),
-    Generator = require('../../util/generator'),
-    yosay = require('yosay'),
-    _ = require('lodash'),
-    schema = require('../../schema/generators');
+    GeneratorBase = require('../../util/generator'),
+    _ = require('lodash');
 
-var KendoMobileGenerator = new Generator({
+var KendoMobileGenerator = new GeneratorBase({
     initializing: function () {
-        this.pkg = require('../../package.json');
         this.argument('appname', { type: String, required: false });
         this.appname = this.appname || path.basename(process.cwd());
         this.appname = this._.camelize(this._.slugify(this._.humanize(this.appname)));
-    },
 
-    _prompting: function () {
-        var that = this,
-            done = that.async();
-
-        // Have Yeoman greet the user.
-        that.log(yosay(
-            'Welcome to the legendary Kendo Mobile generator!'
-        ));
-
-        var prompts = schema.prompts('app');
-
-        that.prompt(prompts, function (props) {
-            _.extend(that, props);
-
-            done();
-        }.bind(that));
+        this.generatorName = 'app';
+        this.generatorWelcome = 'Welcome to the legendary Kendo Mobile generator!';
     },
 
     writing: {
