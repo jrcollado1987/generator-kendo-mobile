@@ -32,7 +32,6 @@ var KendoMobileTabGenerator = new GeneratorBase({
 
         end: function () {
         }
-    })
-    ;
+    });
 
 module.exports = KendoMobileTabGenerator;

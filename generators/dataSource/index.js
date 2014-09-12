@@ -12,12 +12,15 @@ var KendoMobileSignupGenerator = new GeneratorBase({
         },
 
         projectfiles: function () {
-            var model = 'app/scripts/signup.js';
-            this.template('model.js', model);
         }
     },
 
     end: function () {
+        var ds = this.config.get('dataSources');
+
+        ds.push(this.properties);
+
+        this.config.set('dataSources', ds);
     }
 });
 

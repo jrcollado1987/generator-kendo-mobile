@@ -38,7 +38,7 @@
                 "name": "theme",
                 "type": "string",
                 "description": "Which theme you prefer?",
-                "required": false,
+                "required": true,
                 "default": "flat",
                 "enum": ["flat", "bootstrap"]
             },
@@ -46,7 +46,7 @@
                 "name": "transition",
                 "type": "string",
                 "description": "Which transition type you prefer?",
-                "required": false,
+                "required": true,
                 "default": "slide",
                 "enum": ["slide", "zoom", "fade"]
             },

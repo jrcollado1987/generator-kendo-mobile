@@ -29,6 +29,12 @@ var promptType = function (prop) {
     return prompt;
 };
 
+var dependencies = function (generator) {
+    var genSchema = generatorSchema(generator);
+
+    return genSchema['dependencies']
+};
+
 var properties = function (generator) {
     var genSchema = generatorSchema(generator);
 
@@ -41,13 +47,11 @@ var properties = function (generator) {
         }).value();
 };
 
-var getPrompts = function (generator) {
+var getPrompts = function (generator, criteria) {
     var genSchema = generatorSchema(generator);
 
     return _.chain(genSchema['properties'])
-        .filter(function (prop) {
-            return !prop['no-prompt'];
-        })
+        .filter(criteria)
         .map(function (prop) {
             var prompt = {
                 name: prop.name,
@@ -61,6 +65,12 @@ var getPrompts = function (generator) {
         }).value();
 };
 
+var setProps = function (that, props) {
+    _.extend(that, props);
+    // TODO: Maybe leave only the properties.
+    that.properties = that.properties || {};
+    _.extend(that.properties, props);
+}
 
 function GeneratorBase(protoProps) {
     if (!this instanceof GeneratorBase) {
@@ -71,16 +81,42 @@ function GeneratorBase(protoProps) {
         _prompting: function () {
             var that = this,
                 done = that.async(),
-                prompts = getPrompts(that.generatorName);
+                gen = that.generatorName,
+                prompts,
+                deps = dependencies(gen);
 
             if (that.generatorWelcome) {
                 that.log(yosay(that.generatorWelcome));
             }
 
-            that.prompt(prompts, function (props) {
-                _.extend(that, props);
+            prompts = getPrompts(gen, function (prop) {
+                return !prop['no-prompt'] && prop['required'];
+            });
 
-                done();
+            that.prompt(prompts, function (props) {
+                setProps(that, props);
+
+                if (deps) {
+                    _.forOwn(props, function (value, key) {
+                        var dep = _.find(deps, function (dep) {
+                            return dep.name == key && dep.value == value;
+                        });
+
+                        if (dep) {
+                            prompts = getPrompts(gen, function (prop) {
+                                return !prop['no-prompt'] && _.contains(dep.required, prop.name);
+                            });
+
+                            that.prompt(prompts, function (values) {
+                                setProps(that, values);
+                                done();
+                            });
+                        }
+                    });
+                }
+                else {
+                    done();
+                }
 
             }.bind(that));
         },
