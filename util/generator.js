@@ -34,7 +34,7 @@ function GeneratorBase(protoProps) {
                 next;
             //use predefined answers
             if (answers) {
-                answers = Array.isArray(answers) ? answers[0] : answers;
+                answers = Array.isArray(answers) ? answers.shift() : answers;
                 _.assign(that, answers);
 
                 done();

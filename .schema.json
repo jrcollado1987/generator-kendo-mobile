@@ -1,9 +1,15 @@
 {
     "app": {
-        "name": "Kendo Mobile App",
         "description": "",
         "type": "object",
         "properties": [
+            {
+                "name": "name",
+                "type": "string",
+                "description": "What will be the name of your application?",
+                "required": false,
+                "default": "Kendo Mobile App"
+            },
             {
                 "name": "navigation",
                 "type": "string",
@@ -11,6 +17,15 @@
                 "required": true,
                 "default": "tabstrip",
                 "enum": ["tabstrip", "drawer", "custom"]
+            },
+            {
+                "name": "views",
+                "type": "array",
+                "description": "Which views you want to use?",
+                "required": false,
+                "no-prompt": true,
+                "default": [],
+                "enum": ["home"]
             },
             {
                 "name": "view",
