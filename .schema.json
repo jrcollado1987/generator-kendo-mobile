@@ -189,12 +189,14 @@
             {
                 "name": "collection",
                 "type": "string",
+                "required": true,
                 "description": "What is the name of the data collection?",
                 "default": "Products"
             },
             {
                 "name": "fields",
                 "type": "array",
+                "required": true,
                 "description": "Which fields you want to pick?",
                 "default": ["Id", "Name"],
                 "items": [

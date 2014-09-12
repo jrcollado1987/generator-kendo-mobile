@@ -70,7 +70,7 @@ var setProps = function (that, props) {
     // TODO: Maybe leave only the properties.
     that.properties = that.properties || {};
     _.extend(that.properties, props);
-}
+};
 
 function GeneratorBase(protoProps) {
     if (!this instanceof GeneratorBase) {
@@ -120,6 +120,7 @@ function GeneratorBase(protoProps) {
 
             }.bind(that));
         },
+
         prompting: function _usePredefinedAnswersOrPrompt() {
             var that = this,
                 done = that.async(),
