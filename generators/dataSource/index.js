@@ -1,9 +1,10 @@
 'use strict';
-var SchemaGenerator = require('../../schema/schemaGenerator'),
+var GeneratorBase = require('../../util/generator'),
     _ = require('lodash');
 
-var KendoMobileSignupGenerator = SchemaGenerator.extend({
+var KendoMobileSignupGenerator = new GeneratorBase({
     initializing: function () {
+        this.generatorName = 'dataSource';
     },
 
     writing: {
