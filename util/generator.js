@@ -3,7 +3,64 @@
 var Base = require('yeoman-generator').generators.Base,
     _ = require('lodash'),
     yosay = require('yosay'),
-    schema = require('../schema/generators');
+    schema;
+
+var generatorSchema = function (generator) {
+    if (!schema) {
+        schema = require('../.schema.json');
+    }
+
+    return schema[generator];
+};
+
+var promptType = function (prop) {
+    var prompt = {
+        type: 'input'
+    };
+
+    if (prop.enum) {
+        prompt.type = 'list';
+        prompt.choices = prop.enum;
+    }
+    else if (prop.type == 'bool') {
+
+    }
+
+    return prompt;
+};
+
+var properties = function (generator) {
+    var genSchema = generatorSchema(generator);
+
+    return _.chain(genSchema['properties'])
+        .filter(function (prop) {
+            return !prop['no-prompt'];
+        })
+        .map(function (prop) {
+            return prop.name;
+        }).value();
+};
+
+var getPrompts = function (generator) {
+    var genSchema = generatorSchema(generator);
+
+    return _.chain(genSchema['properties'])
+        .filter(function (prop) {
+            return !prop['no-prompt'];
+        })
+        .map(function (prop) {
+            var prompt = {
+                name: prop.name,
+                message: prop.description,
+                default: prop.default
+            };
+
+            prompt = _.extend(prompt, promptType(prop));
+
+            return prompt;
+        }).value();
+};
+
 
 function GeneratorBase(protoProps) {
     if (!this instanceof GeneratorBase) {
@@ -14,7 +71,7 @@ function GeneratorBase(protoProps) {
         _prompting: function () {
             var that = this,
                 done = that.async(),
-                prompts = schema.prompts(that.generatorName);
+                prompts = getPrompts(that.generatorName);
 
             if (that.generatorWelcome) {
                 that.log(yosay(that.generatorWelcome));

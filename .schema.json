@@ -55,6 +55,7 @@
                 "type": "array",
                 "description": "List of Data Providers of the app.",
                 "default": [],
+                "required": false,
                 "no-prompt": true
             }
         ]
@@ -127,6 +128,7 @@
                 "type": "array",
                 "description": "List of the children components of this view.",
                 "default": [],
+                "required": false,
                 "no-prompt": true
             }
         ]

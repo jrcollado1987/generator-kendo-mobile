@@ -5,6 +5,7 @@ var path = require('path'),
 
 var KendoMobileGenerator = new GeneratorBase({
     initializing: function () {
+        this.pkg = require('../../package.json');
         this.argument('appname', { type: String, required: false });
         this.appname = this.appname || path.basename(process.cwd());
         this.appname = this._.camelize(this._.slugify(this._.humanize(this.appname)));
