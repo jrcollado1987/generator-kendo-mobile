@@ -18,7 +18,10 @@ var KendoMobileTabGenerator = new GeneratorBase({
             });
 
             //TODO: Think of way to deal with arrays.
-            that.fields = that.fields.split(',');
+            //TODO: Resolve array types in more generic way.
+            if (!_.isArray(that.fields)) {
+                that.fields = that.fields.split(',');
+            }
 
             _.extend(that, ds);
 

@@ -20,10 +20,7 @@ var KendoMobileGenerator = new GeneratorBase({
 
             this.src.copy('_package.json', 'package.json');
 
-//            if (this.everlive) {
-//                this.src.copy('static/everlive.all.min.js', 'app/lib/everlive.all.min.js');
-//            }
-            this.template('scripts/app.js', 'app/scripts/app.js');
+            this.template('app.js', 'app/scripts/app.js');
             this.template('main.css', 'app/styles/main.css');
 
             this.composeWith('kendo-mobile:view', { arguments: [this.view]});

@@ -13,6 +13,14 @@
         }
     };
 
+    <% if(type == 'everlive' && everliveKey) { %>
+        // Initialize Everlive SDK
+        app.evelive = new Everlive({
+            apiKey: '<%= everliveKey %>',
+            scheme: 'http'
+        });
+    <% } %>
+
     app.models.<%= view %>.<%= name %> = new kendo.data.DataSource({
         type: '<%= type %>',
         schema: {
