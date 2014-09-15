@@ -1,6 +1,6 @@
 'use strict';
 var path = require('path'),
-    GeneratorBase = require('../../util/generator'),
+    GeneratorBase = require('../../lib/generator'),
     _ = require('lodash');
 
 var KendoMobileGenerator = new GeneratorBase({

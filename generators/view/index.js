@@ -1,5 +1,5 @@
 'use strict';
-var GeneratorBase = require('../../util/generator'),
+var GeneratorBase = require('../../lib/generator'),
     _ = require('lodash');
 
 var KendoMobileViewGenerator = new GeneratorBase({
