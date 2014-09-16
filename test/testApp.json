@@ -1,36 +1,28 @@
 {
-    "app": {
-        "name": "Test App",
-        "description": "My first mobile app.",
-        "navigation": "tabstrip",
-        "view": "home",
-        "theme": "bootstrap",
-        "transition": "fade",
-        "dataProviders": [
-            {
-                "type": "dataSource",
-                "options": {
-                    "type": "everlive",
-                    "name": "dataSource1",
-                    "everliveKey": "h8KnncMXaRhvMXmp"
-                }
+    "name": "Test App",
+    "description": "My first mobile app.",
+    "navigation": "tabstrip",
+    "view": "home",
+    "theme": "bootstrap",
+    "transition": "fade",
+    "dataProviders": [{
+        "type": "dataSource",
+        "options": {
+            "type": "everlive",
+            "name": "dataSource1",
+            "everliveKey": "h8KnncMXaRhvMXmp"
+        }
+    }],
+    "views": [{
+        "name": "home",
+        "components": [{
+            "type": "list",
+            "options": {
+                "name": "list1",
+                "dataProvider": "dataSource1",
+                "collection": "Products",
+                "fields": ["Name", "CreatedAt"]
             }
-        ],
-        "views": [
-            {
-                "name": "home",
-                "components": [
-                    {
-                        "type": "list",
-                        "options": {
-                            "name": "list1",
-                            "dataProvider": "dataSource1",
-                            "collection": "Products",
-                            "fields": ["Name", "CreatedAt"]
-                        }
-                    }
-                ]
-            }
-        ]
-    }
+        }]
+    }]
 }
