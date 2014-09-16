@@ -16,6 +16,7 @@ describe('kendo-mobile:app', function () {
                 //view: 'default'
             })
             .on('end', done);
+            console.log(path.join(__dirname, '../generators/view'));
     });
 
     it('creates files', function () {
