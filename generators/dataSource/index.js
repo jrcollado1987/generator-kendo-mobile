@@ -23,11 +23,9 @@ var KendoMobileSignupGenerator = new GeneratorBase({
     },
 
     end: function () {
-        var ds = this.config.get('dataSources');
-
-        ds.push(this.properties);
-
-        this.config.set('dataSources', ds);
+        var sources = this.config.get('dataSources');
+        sources.push(this.properties);
+        this.config.set('dataSources', sources);
     }
 });
 

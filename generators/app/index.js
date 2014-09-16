@@ -51,6 +51,7 @@ var KendoMobileGenerator = new GeneratorBase({
     end: function () {
         this.config.set('navigation', this.navigation);
 
+        this.config.set('names', []);
         this.config.set('dataSources', []);
         this.config.set('views', []);
 
