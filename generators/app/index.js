@@ -6,12 +6,12 @@ var path = require('path'),
 var KendoMobileGenerator = new GeneratorBase({
     initializing: function () {
         this.pkg = require('../../package.json');
-        this.argument('appname', { type: String, required: false });
         this.appname = this.appname || path.basename(process.cwd());
         this.appname = this._.camelize(this._.slugify(this._.humanize(this.appname)));
 
         this.generatorName = 'app';
         this.generatorWelcome = 'Welcome to the legendary Kendo Mobile generator!';
+        // noCli is passed to prevent some operations for non-cli environment.
     },
 
     writing: {
@@ -23,7 +23,9 @@ var KendoMobileGenerator = new GeneratorBase({
             this.template('app.js', 'app/scripts/app.js');
             this.template('main.css', 'app/styles/main.css');
 
-            this.composeWith('kendo-mobile:view', { arguments: [this.view]});
+            if (!this.noCli) {
+                this.composeWith('kendo-mobile:view', { arguments: [this.view]});
+            }
         },
 
         projectfiles: function () {
@@ -55,7 +57,9 @@ var KendoMobileGenerator = new GeneratorBase({
         this.config.set('dataSources', []);
         this.config.set('views', []);
 
-        this.installDependencies();
+        if (!this.noCli) {
+            this.installDependencies();
+        }
     }
 });
 
