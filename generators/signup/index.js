@@ -3,31 +3,35 @@ var GeneratorBase = require('../../lib/generator'),
     _ = require('lodash');
 
 var KendoMobileSignupGenerator = new GeneratorBase({
-    initializing: function () {
-        this.generatorName = 'signup';
+    _options: {
+        name: 'view'
     },
-
+    initializing: function () {
+        this._init();
+    },
     writing: {
         app: function () {
         },
 
         projectfiles: function () {
-            var viewTemplate = this.src.read('view.html');
+            var that = this;
 
-            var viewFile = 'app/views/' + this.view + '.html';
-            var view = this.engine(this.dest.read(viewFile), this);
-            var content = this.engine(viewTemplate, this);
+            var viewTemplate = that.src.read('view.html');
 
-            view = this.domUpdate(view, ".view-content", content, 'r');
+            var viewFile = 'app/views/' + that.context.view + '.html';
+            var view = that.engine(that.dest.read(viewFile), that.context);
+            var content = that.engine(viewTemplate, that.context);
 
-            this.writeFileFromString(view, viewFile);
+            view = that.domUpdate(view, ".view-content", content, 'r');
+
+            that.writeFileFromString(view, viewFile);
 
             var model = 'app/scripts/signup.js';
-            this.template('model.js', model);
+            that.template('model.js', model, that.context);
 
-            var index = this.engine(this.dest.read('app/index.html'), this);
-            index = this.appendScripts(index, '', ['scripts/signup.js']);
-            this.writeFileFromString(index, 'app/index.html');
+            var index = that.engine(that.dest.read('app/index.html'), that.context);
+            index = that.appendScripts(index, '', ['scripts/signup.js']);
+            that.writeFileFromString(index, 'app/index.html');
         }
     },
 

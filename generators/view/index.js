@@ -3,26 +3,31 @@ var GeneratorBase = require('../../lib/generator'),
     _ = require('lodash');
 
 var KendoMobileViewGenerator = new GeneratorBase({
+    _options: {
+        name: 'view'
+    },
     initializing: function () {
+        this._init();
         this.argument('name', { type: String, required: false });
-
-        this.generatorName = 'view';
+        if (this.name) {
+            this.context.name = this.name;
+        }
     },
 
     writing: {
         app: function () {
-            this.template('view.html', 'app/views/' + this.name + '.html');
-            this.template('model.js', 'app/scripts/' + this.name + '.js');
-            this.scripts = ['scripts/' + this.name + '.js'];
+            this.template('view.html', 'app/views/' + this.context.name + '.html', this.context);
+            this.template('model.js', 'app/scripts/' + this.context.name + '.js', this.context);
+            this.scripts = ['scripts/' + this.context.name + '.js'];
         },
 
         projectfiles: function () {
-            var index = this.engine(this.dest.read('app/index.html'), this);
+            var index = this.engine(this.dest.read('app/index.html'), this.context);
             index = this.appendScripts(index, '', this.scripts);
 
             var linkTemplate = this.src.read('link.html');
 
-            var link = this.engine(linkTemplate, this);
+            var link = this.engine(linkTemplate, this.context);
 
             if (this.config.get('navigation') == 'drawer') {
                 link = '<li>' + link + '</li>';

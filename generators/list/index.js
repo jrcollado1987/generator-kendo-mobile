@@ -2,44 +2,45 @@
 var GeneratorBase = require('../../lib/generator'),
     _ = require('lodash');
 
-var KendoMobileTabGenerator = new GeneratorBase({
-    initializing: function () {
-        this.generatorName = 'list';
+var KendoMobileListGenerator = new GeneratorBase({
+    _options: {
+        name: 'list'
     },
-
+    initializing: function () {
+        this._init();
+    },
     writing: {
         projectfiles: function () {
-            var that = this;
-
-            var sources = this.config.get('dataSources');
+            var that = this,
+                sources = that.config.get('dataSources');
 
             var ds = _.find(sources, function (ds) {
-                return ds.name == that.dataSource;
+                return ds.name == that.context.dataSource;
             });
 
             //TODO: Think of way to deal with arrays.
             //TODO: Resolve array types in more generic way.
-            if (!_.isArray(that.fields)) {
-                that.fields = that.fields.split(',');
+            if (!_.isArray(that.context.fields)) {
+                that.context.fields = that.context.fields.split(',');
             }
 
-            _.extend(that, ds);
+            _.extend(that.context, ds);
 
-            var listTemplate = this.src.read('list.html');
-            var viewFile = 'app/views/' + this.view + '.html';
-            var view = this.engine(this.dest.read(viewFile), this);
+            var listTemplate = that.src.read('list.html');
+            var viewFile = 'app/views/' + that.context.view + '.html';
+            var view = that.engine(that.dest.read(viewFile), that.context);
 
-            var list = this.engine(listTemplate, this);
+            var list = that.engine(listTemplate, that.context);
 
-            view = this.domUpdate(view, ".view-content", list, 'a');
-            this.writeFileFromString(view, viewFile);
+            view = that.domUpdate(view, ".view-content", list, 'a');
+            that.writeFileFromString(view, viewFile);
 
-            var model = 'app/scripts/' + this.name + '.js';
-            this.template('model.js', model);
+            var model = 'app/scripts/' + that.context.name + '.js';
+            that.template('model.js', model, that.context);
 
-            var index = this.engine(this.dest.read('app/index.html'), this);
-            index = this.appendScripts(index, '', ['scripts/' + this.name + '.js']);
-            this.writeFileFromString(index, 'app/index.html');
+            var index = that.engine(that.dest.read('app/index.html'), that.context);
+            index = that.appendScripts(index, '', ['scripts/' + that.context.name + '.js']);
+            that.writeFileFromString(index, 'app/index.html');
         }
     },
 
@@ -47,4 +48,4 @@ var KendoMobileTabGenerator = new GeneratorBase({
     }
 });
 
-module.exports = KendoMobileTabGenerator;
+module.exports = KendoMobileListGenerator;
