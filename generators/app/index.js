@@ -59,7 +59,10 @@ var KendoMobileGenerator = new GeneratorBase({
         this.config.set('views', []);
 
         if (!this.noCli) {
-            this.installDependencies();
+            this.installDependencies({
+                npm: true,
+                bower: false
+            });
         }
     }
 });
