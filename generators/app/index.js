@@ -25,7 +25,7 @@ var KendoMobileGenerator = new GeneratorBase({
             this.template('app.js', 'app/scripts/app.js', this.context);
             this.template('main.css', 'app/styles/main.css', this.context);
 
-            if (!this.noCli) {
+            if (!this.context.noCli) {
                 this.composeWith('kendo-mobile:view', { arguments: [this.context.view]});
             }
         },
@@ -58,7 +58,7 @@ var KendoMobileGenerator = new GeneratorBase({
         this.config.set('dataSources', []);
         this.config.set('views', []);
 
-        if (!this.noCli) {
+        if (!this.context.noCli) {
             this.installDependencies({
                 npm: true,
                 bower: false
