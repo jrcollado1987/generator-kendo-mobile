@@ -19,6 +19,7 @@
             "type": "list",
             "options": {
                 "name": "list1",
+                "view": "home",
                 "dataProvider": "dataSource1",
                 "collection": "Products",
                 "fields": ["Name", "CreatedAt"]
