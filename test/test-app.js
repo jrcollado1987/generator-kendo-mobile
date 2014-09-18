@@ -6,24 +6,30 @@ var assert = require('yeoman-generator').assert;
 var helpers = require('yeoman-generator').test;
 var os = require('os');
 
-describe('kendo-mobile:app', function () {
+describe('kendo-mobile:app with default settings', function () {
     before(function (done) {
         helpers.run(path.join(__dirname, '../generators/app'))
             .inDir(path.join(os.tmpdir(), './temp-test'))
             .withOptions({})
             .withGenerators([path.join(__dirname, '../generators/view')])
             .withPrompts({
-                //view: 'default'
+                //view: 'default',
+                //noCli: true
             })
             .on('end', done);
-            console.log(path.join(__dirname, '../generators/view'));
     });
 
     it('creates files', function () {
         assert.file([
             'package.json',
             '.editorconfig',
-            '.jshintrc'
+            '.jshintrc',
+            'Gruntfile.js',
+            'app/scripts/app.js',
+            'app/styles/main.css',
+            'app/kendo/js/jquery.min.js',
+            'app/kendo/js/kendo.mobile.min.js',
+            'app/index.html'
         ]);
     });
 
@@ -32,10 +38,25 @@ describe('kendo-mobile:app', function () {
             'app/views/home.html',
             'app/scripts/home.js'
         ]);
-        assert.fileContent('app/index.html', /<a href=\"views\/home\.html\" data-icon=\"home\">home<\/a><\/div>/);
     });
 
-    it('creates tabstrip navigation', function () {
-        assert.fileContent('app/index.html', /div data-role=\"tabstrip\" id=\"navigation-container\"/);
+    it('add default view in app file', function () {
+        assert.fileContent('app/scripts/app.js', new RegExp('initial: \'views/home.html\''));
+    });
+
+    it('add href for the home view in index file', function () {
+        assert.fileContent('app/index.html', new RegExp('<a href=\"views/home.html\" data-icon=\"home\">home</a>'));
+    });
+
+    it('add tabstrip navigation in index file', function () {
+        assert.fileContent('app/index.html', new RegExp('div data-role=\"tabstrip\" id=\"navigation-container\"'));
+    });
+
+    it('add theme in app file', function () {
+        assert.fileContent('app/scripts/app.js', new RegExp('skin: \'flat\''));
+    });
+
+    it('add transition in app file', function () {
+        assert.fileContent('app/scripts/app.js', new RegExp('transition: \'slide\''));
     });
 });
