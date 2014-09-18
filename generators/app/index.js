@@ -10,6 +10,10 @@ var KendoMobileGenerator = new GeneratorBase({
     },
     initializing: function () {
         this._init();
+        this.config.set('views', []);
+        this.config.set('names', []);
+        this.config.set('dataSources', []);
+
         this.context.pkg = require('../../package.json');
         this.context.appname = this.appname || path.basename(process.cwd());
         this.context.appname = this._.camelize(this._.slugify(this._.humanize(this.context.appname)));
@@ -53,10 +57,6 @@ var KendoMobileGenerator = new GeneratorBase({
 
     end: function () {
         this.config.set('navigation', this.context.navigation);
-
-        this.config.set('names', []);
-        this.config.set('dataSources', []);
-        this.config.set('views', []);
 
         if (!this.context.noCli) {
             this.installDependencies({
