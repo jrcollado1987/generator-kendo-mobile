@@ -37,7 +37,7 @@
 
 #<%= appname %>.km-flat,
 #<%= appname %>.km-flat .km-navbar,
-#<%= appname %>.km-flat .km-content {
+#<%= appname %>.km-flat .km-view-title {
     border: 0 none;
     background-color: #2d3e50;
     color: #fff;

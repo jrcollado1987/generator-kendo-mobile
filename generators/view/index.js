@@ -43,8 +43,10 @@ var KendoMobileViewGenerator = GeneratorBase.extend({
 
     end: function () {
         var views = this.config.get('views');
-        views.push(this.context);
-        this.config.set('views', views);
+        if (views) {
+            views.push(this.context);
+            this.config.set('views', views);
+        }
     }
 });
 
