@@ -18,8 +18,6 @@ var KendoMobileGenerator = GeneratorBase.extend({
         this.config.set('views', []);
         this.config.set('names', []);
         this.config.set('dataSources', []);
-        this.config.set('navigation', this.context.navigation);
-        console.log(this.config.get('navigation'));
     },
 
     prompting: function() {
@@ -62,6 +60,8 @@ var KendoMobileGenerator = GeneratorBase.extend({
     },
 
     end: function () {
+        this.config.set('navigation', this.context.navigation);
+
         if (!this.context.noCli) {
             this.installDependencies({
                 npm: true,
