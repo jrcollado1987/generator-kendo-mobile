@@ -141,7 +141,7 @@
             {
                 "name": "view",
                 "type": "string",
-                "description": "Which view you want to add the list to?",
+                "description": "Which view you want to add the signup form to?",
                 "required": true,
                 "default": "home"
             },

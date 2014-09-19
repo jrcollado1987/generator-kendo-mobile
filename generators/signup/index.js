@@ -5,8 +5,13 @@ var GeneratorBase = require('../../lib/generator'),
 var KendoMobileSignupGenerator = GeneratorBase.extend({
     initializing: function () {
         this._init();
-        this.generator = 'view';
+        this.generator = 'signup';
     },
+
+    prompting: function () {
+        this._usePredefinedAnswersOrPrompt();
+    },
+
     writing: {
         app: function () {
         },
@@ -14,7 +19,7 @@ var KendoMobileSignupGenerator = GeneratorBase.extend({
         projectfiles: function () {
             var that = this;
 
-            var viewTemplate = that.src.read('view.html');
+            var viewTemplate = that.src.read('signup.html');
 
             var viewFile = 'app/views/' + that.context.view + '.html';
             var view = that.engine(that.dest.read(viewFile), that.context);
@@ -24,8 +29,7 @@ var KendoMobileSignupGenerator = GeneratorBase.extend({
 
             that.writeFileFromString(view, viewFile);
 
-            var model = 'app/scripts/signup.js';
-            that.template('model.js', model, that.context);
+            that.template('model.js', 'app/scripts/signup.js', that.context);
 
             var index = that.engine(that.dest.read('app/index.html'), that.context);
             index = that.appendScripts(index, '', ['scripts/signup.js']);
