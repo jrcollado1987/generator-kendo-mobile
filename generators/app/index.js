@@ -62,7 +62,7 @@ var KendoMobileGenerator = GeneratorBase.extend({
     end: function () {
         this.config.set('navigation', this.context.navigation);
 
-        if (!this.context.noCli) {
+        if (this.context.noNpm) {
             this.installDependencies({
                 npm: true,
                 bower: false
