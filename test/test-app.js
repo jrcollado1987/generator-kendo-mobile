@@ -12,27 +12,15 @@ var tempDir = path.join(os.tmpdir(), './temp-generated-app');
 describe('kendo-mobile:app', function () {
     describe ('with default settings', function(){
         before(function (done) {
-            //helpers.before(tempDir);
             helpers.run(path.join(__dirname, '../generators/app'))
                 .inDir(tempDir)
                 .withOptions({})
                 .withGenerators([path.join(__dirname, '../generators/view')])
                 .withPrompts({
-                    //noNpm: true
+                    noNpm: true
                 })
                 .on('end', done);
         });
-
-        /*after(function(done){
-            console.log('Path to delete' + path.join(os.tmpdir(), './temp-generated-app'));
-            fs.remove(path.join(os.tmpdir(), './temp-generated-app'), function(err){
-                if (err) return console.error(err);
-                console.log("success!")
-            });
-
-            fs.removeSync(path.join(os.tmpdir(), './temp-generated-app'));
-            done();
-        });*/
 
         it('creates files', function () {
             assert.file([
@@ -78,7 +66,6 @@ describe('kendo-mobile:app', function () {
 
     describe('kendo-mobile:app with drawer navigation', function () {
         before(function (done) {
-            //helpers.before(tempDir);
             helpers.run(path.join(__dirname, '../generators/app'))
                 .inDir(tempDir)
                 .withOptions({})
@@ -118,13 +105,12 @@ describe('kendo-mobile:app', function () {
 
     describe('kendo-mobile:app with custom settings', function () {
         before(function (done) {
-            //helpers.before(tempDir);
             helpers.run(path.join(__dirname, '../generators/app'))
                 .inDir(tempDir)
                 .withOptions({})
                 .withGenerators([path.join(__dirname, '../generators/view')])
                 .withPrompts({
-                    //noNpm: true,
+                    noNpm: true,
                     navigation: 'custom',
                     theme: 'bootstrap',
                     transition: 'zoom'
