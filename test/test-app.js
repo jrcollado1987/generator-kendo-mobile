@@ -64,7 +64,7 @@ describe('kendo-mobile:app', function () {
     describe('kendo-mobile:app with drawer navigation', function () {
         before(function (done) {
             helpers.run(path.join(__dirname, '../generators/app'))
-                .inDir(path.join(os.tmpdir(), './temp-test'))
+                .inDir(path.join(os.tmpdir(), './temp-generated-app'))
                 .withOptions({})
                 .withGenerators([path.join(__dirname, '../generators/view')])
                 .withPrompts({
@@ -75,6 +75,69 @@ describe('kendo-mobile:app', function () {
 
         it('add drawer navigation in index file', function () {
             assert.fileContent('app/index.html', new RegExp('<a data-role=\"button\" href=\"#appDrawer\" data-rel=\"drawer\" data-align=\"left\" data-icon=\"drawer-button\"></a>'));
+            assert.fileContent('app/index.html', new RegExp('<div data-role=\"drawer\" id=\"appDrawer\" data-title=\"Navigation\">'));
+            assert.fileContent('app/index.html', new RegExp('<div data-role=\"drawer\" id=\"appDrawer\" data-title=\"Navigation\">'));
+        });
+
+        it('creates default view', function () {
+            assert.file([
+                'app/views/home.html',
+                'app/scripts/home.js'
+            ]);
+        });
+
+        it('add default view in app file', function () {
+            assert.fileContent('app/scripts/app.js', new RegExp('initial: \'views/home.html\''));
+        });
+
+        it('add href for the home view in index file', function () {
+            assert.fileContent('app/index.html', new RegExp('<a href=\"views/home.html\" data-icon=\"home\">home</a>'));
+        });
+
+        it('do not add transition in app file', function () {
+            assert.noFileContent('app/scripts/app.js', new RegExp('transition:'));
+        });
+    });
+
+    describe('kendo-mobile:app with custom settings', function () {
+        before(function (done) {
+            helpers.run(path.join(__dirname, '../generators/app'))
+                .inDir(path.join(os.tmpdir(), './temp-generated-app'))
+                .withOptions({})
+                .withGenerators([path.join(__dirname, '../generators/view')])
+                .withPrompts({
+                    navigation: 'custom',
+                    theme: 'bootstrap',
+                    transition: 'zoom'
+                })
+                .on('end', done);
+        });
+
+        it('add custom navigation in index file', function () {
+            assert.fileContent('app/index.html', new RegExp('<a class=\"nav-button km-widget km-button km-back\" data-align=\"left\" data-role=\"backbutton\" href=\"#:back\"><span class=\"km-text\">Back</span></a>'));
+        });
+
+        it('creates default view', function () {
+            assert.file([
+                'app/views/home.html',
+                'app/scripts/home.js'
+            ]);
+        });
+
+        it('add default view in app file', function () {
+            assert.fileContent('app/scripts/app.js', new RegExp('initial: \'views/home.html\''));
+        });
+
+        it('add href for the home view in index file', function () {
+            assert.fileContent('app/index.html', new RegExp('<a href=\"views/home.html\" data-icon=\"home\">home</a>'));
+        });
+
+        it('add theme in app file', function () {
+            assert.fileContent('app/scripts/app.js', new RegExp('skin: \'bootstrap\''));
+        });
+
+        it('add transition in app file', function () {
+            assert.fileContent('app/scripts/app.js', new RegExp('transition: \'zoom\''));
         });
     });
 });
