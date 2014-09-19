@@ -2,12 +2,10 @@
 var GeneratorBase = require('../../lib/generator'),
     _ = require('lodash');
 
-var KendoMobileSignupGenerator = new GeneratorBase({
-    _options: {
-        name: 'view'
-    },
+var KendoMobileSignupGenerator = GeneratorBase.extend({
     initializing: function () {
         this._init();
+        this.generator = 'view';
     },
     writing: {
         app: function () {

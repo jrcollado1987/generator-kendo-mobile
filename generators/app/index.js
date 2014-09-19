@@ -3,21 +3,27 @@ var path = require('path'),
     GeneratorBase = require('../../lib/generator'),
     _ = require('lodash');
 
-var KendoMobileGenerator = new GeneratorBase({
-    _options: {
-        name: 'app',
-        welcome: 'Welcome to the legendary Kendo Mobile generator!'
-    },
+var KendoMobileGenerator = GeneratorBase.extend({
     initializing: function () {
         this._init();
-        this.config.set('views', []);
-        this.config.set('names', []);
-        this.config.set('dataSources', []);
+        this.generator = 'app';
+        this.welcome = 'Welcome to the legendary Kendo Mobile generator!';
 
-        this.context.pkg = require('../../package.json');
         this.context.appname = this.appname || path.basename(process.cwd());
         this.context.appname = this._.camelize(this._.slugify(this._.humanize(this.context.appname)));
         // noCli is passed to prevent some operations for non-cli environment.
+    },
+
+    configuring: function () {
+        this.config.set('views', []);
+        this.config.set('names', []);
+        this.config.set('dataSources', []);
+        this.config.set('navigation', this.context.navigation);
+        console.log(this.config.get('navigation'));
+    },
+
+    prompting: function() {
+        this._usePredefinedAnswersOrPrompt();
     },
 
     writing: {
@@ -56,8 +62,6 @@ var KendoMobileGenerator = new GeneratorBase({
     },
 
     end: function () {
-        this.config.set('navigation', this.context.navigation);
-
         if (!this.context.noCli) {
             this.installDependencies({
                 npm: true,

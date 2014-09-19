@@ -2,16 +2,18 @@
 var GeneratorBase = require('../../lib/generator'),
     _ = require('lodash');
 
-var KendoMobileViewGenerator = new GeneratorBase({
-    _options: {
-        name: 'view'
-    },
+var KendoMobileViewGenerator = GeneratorBase.extend({
     initializing: function () {
         this._init();
         this.argument('name', { type: String, required: false });
         if (this.name) {
             this.context.name = this.name;
         }
+        this.generator = 'view';
+    },
+
+    prompting: function () {
+        this._usePredefinedAnswersOrPrompt();
     },
 
     writing: {

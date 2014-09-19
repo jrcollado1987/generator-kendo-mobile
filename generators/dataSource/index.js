@@ -2,13 +2,16 @@
 var GeneratorBase = require('../../lib/generator'),
     _ = require('lodash');
 
-var KendoMobileDataSourceGenerator = new GeneratorBase({
-    _options: {
-        name: 'dataSource'
-    },
+var KendoMobileDataSourceGenerator = GeneratorBase.extend({
     initializing: function () {
         this._init();
+        this.generator = 'dataSource'
     },
+
+    prompting: function () {
+        this._usePredefinedAnswersOrPrompt();
+    },
+
     writing: {
         projectfiles: function () {
             var that = this;

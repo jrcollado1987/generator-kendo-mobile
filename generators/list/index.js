@@ -2,13 +2,16 @@
 var GeneratorBase = require('../../lib/generator'),
     _ = require('lodash');
 
-var KendoMobileListGenerator = new GeneratorBase({
-    _options: {
-        name: 'list'
-    },
+var KendoMobileListGenerator = GeneratorBase.extend({
     initializing: function () {
         this._init();
+        this.generator = 'list';
     },
+
+    prompting: function () {
+        this._usePredefinedAnswersOrPrompt();
+    },
+
     writing: {
         projectfiles: function () {
             var that = this,
